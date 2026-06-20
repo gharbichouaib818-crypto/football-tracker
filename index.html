@@ -3,185 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شبكة.io</title>
+    <title>Live Stream</title>
     <!-- Monetag Ad Script -->
     <script src="https://quge5.com/88/tag.min.js" data-zone="251698" async data-cfasync="false"></script>
     
     <style>
-        :root {
-            --primary-color: #00ff88; 
-            --glass-bg: rgba(20, 20, 20, 0.85); 
-        }
-
         body {
-            background-image: url('ball.jpg');
-            background-size: cover;       
-            background-position: center;  
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            color: #ffffff;               
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
-
-        .navbar {
-            background-color: var(--glass-bg);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--primary-color);
-            backdrop-filter: blur(8px); 
-        }
-
-        .navbar h1 { margin: 0; font-size: 28px; letter-spacing: 1px; text-transform: uppercase; }
-        .navbar span { color: var(--primary-color); }
-        .arabic-note { font-size: 14px; color: #ffcc00; text-align: right; }
-
-        .partner-spot { width: 100%; text-align: center; margin: 20px 0; }
         .ad-container { 
-            width: 80%; margin: 0 auto; height: 300px; 
+            width: 80%; margin: 50px auto; height: 300px; 
             background: rgba(0, 255, 136, 0.2); 
             display: flex; align-items: center; justify-content: center; 
-            cursor: pointer; border: 2px dashed var(--primary-color); 
-            border-radius: 12px; transition: 0.3s; padding: 20px;
+            cursor: pointer; border: 2px dashed #00ff88; 
+            border-radius: 12px; padding: 20px;
         }
-        .ad-container:hover { background: rgba(0, 255, 136, 0.3); }
-
-        .main-container {
-            max-width: 1200px; margin: 50px auto; padding: 30px;
-            background-color: var(--glass-bg); border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px); text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .live-video-node {
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid var(--primary-color);
-            border-radius: 12px; padding: 20px; margin-bottom: 40px;
-            display: none; 
-        }
-
-        .live-indicator {
-            color: #ff3333; font-size: 22px; font-weight: bold;
-            text-transform: uppercase; margin: 0 0 15px 0;
-            animation: pulse 2s infinite; 
-        }
-
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
-        .server-buttons { margin-bottom: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .server-btn { background: var(--primary-color); color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
-
-        /* Video and Chat Layout */
-        .content-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
+        #live-stream {
+            display: none;
             margin-top: 20px;
         }
-        
-        .player-section {
-            flex: 1 1 70%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-section {
-            flex: 1 1 25%;
-            background: #ffffff;
-            min-height: 400px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .discord-link {
-            margin-top: 15px;
-            font-weight: bold;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .discord-link a { 
-            color: #5865F2; 
-            text-decoration: none; 
-        }
-
-        .match-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .match-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px 15px; }
-        .match-card h3 { font-size: 16px; margin: 0 0 15px 0; color: #ffffff; text-transform: uppercase; }
-        .flags-container { display: flex; justify-content: center; align-items: center; gap: 20px; }
-        .flag { width: 70px; height: auto; border-radius: 4px; }
-        .vs-text { color: var(--primary-color); font-weight: bold; font-size: 14px; }
+        .server-buttons { margin-bottom: 20px; }
+        .server-btn { background: #00ff88; color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; margin: 5px; }
+        h2 { color: #ff3333; }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <h1>Shabaka<span>.io</span> / شبكة<span>.io</span></h1>
-        <div class="arabic-note">استخدام brave browser لتخطي الاعلانات</div>
-    </div>
-
-    <div class="partner-spot" id="partner-spot">
+    <div id="partner-spot">
         <div class="ad-container" id="ad-container">
             <h2 id="click-text">(0/10) استخدام brave browser لتخطي الاعلانات</h2>
         </div>
     </div>
 
-    <div class="main-container">
-        <!-- VIDEO NODE SECTION -->
-        <div class="live-video-node" id="live-stream">
-            <h3 class="live-indicator">🔴 LIVE NOW: Netherlands VS Sweden</h3>
-            
-            <div class="server-buttons">
-                <button class="server-btn" onclick="changeServer(server1Node)">Server 1</button>
-                <button class="server-btn" onclick="changeServer(server2Node)">Server 2</button>
-                <button class="server-btn" onclick="changeServer(server3Node)">Server 3</button>
-            </div>
-            
-            <div class="content-wrapper">
-                <div class="player-section">
-                    <!-- Video Container for dynamic injection -->
-                    <div id="video-container">
-                        <iframe src="https://footybite.ac/event/netherlands-vs-sweden" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                    
-                    <div class="discord-link">
-                        Please join our Discord Channel <a href="#" target="_blank">Discord Server</a>
-                    </div>
-                </div>
-
-                <div class="chat-section" id="chat-container">
-                    <!-- Ensure your Chatango embed code goes back in here if you need to replace the placeholder -->
-                    <iframe width="100%" height="100%" frameborder="0" src="about:blank" style="background:#fff;"></iframe>
-                </div>
-            </div>
+    <div id="live-stream">
+        <h2>🔴 LIVE NOW: GERMANY VS IVORY COAST</h2>
+        
+        <div class="server-buttons">
+            <button class="server-btn" onclick="changeServer(server1Node)">Server 1</button>
+            <button class="server-btn" onclick="changeServer(server2Node)">Server 2</button>
+            <button class="server-btn" onclick="changeServer(server3Node)">Server 3</button>
         </div>
-
-        <h2>Upcoming Matches</h2>
-        <div class="match-grid">
-            <div class="match-card"><h3>Tunisia VS Japan</h3><div class="flags-container"><img class="flag" src="Tunisia.png" alt="Tunisia"><span class="vs-text">VS</span><img class="flag" src="Japan.png" alt="Japan"></div></div>
-            <div class="match-card"><h3>Belgium VS Iran</h3><div class="flags-container"><img class="flag" src="Belgium.png" alt="Belgium"><span class="vs-text">VS</span><img class="flag" src="Iran.png" alt="Iran"></div></div>
-            <div class="match-card"><h3>New Zealand vs Egypt</h3><div class="flags-container"><img class="flag" src="New Zealand.png" alt="New Zealand"><span class="vs-text">VS</span><img class="flag" src="Egypt.png" alt="Egypt"></div></div>
-            <div class="match-card"><h3>Argentina vs Austria</h3><div class="flags-container"><img class="flag" src="Argentina.png" alt="Argentina"><span class="vs-text">VS</span><img class="flag" src="Austria.png" alt="Austria"></div></div>
-            <div class="match-card"><h3>France vs Iraq</h3><div class="flags-container"><img class="flag" src="France.png" alt="France"><span class="vs-text">VS</span><img class="flag" src="Iraq.png" alt="Iraq"></div></div>
-            <div class="match-card"><h3>Norway vs Senegal</h3><div class="flags-container"><img class="flag" src="Norway.png" alt="Norway"><span class="vs-text">VS</span><img class="flag" src="Senegal.png" alt="Senegal"></div></div>
-            <div class="match-card"><h3>Jordan vs Algeria</h3><div class="flags-container"><img class="flag" src="Jordan.png" alt="Jordan"><span class="vs-text">VS</span><img class="flag" src="Algeria.png" alt="Algeria"></div></div>
-            <div class="match-card"><h3>Portugal vs Uzbekistan</h3><div class="flags-container"><img class="flag" src="Portugal.png" alt="Portugal"><span class="vs-text">VS</span><img class="flag" src="Uzbekistan.png" alt="Uzbekistan"></div></div>
-            <div class="match-card"><h3>England vs Ghana</h3><div class="flags-container"><img class="flag" src="England.png" alt="England"><span class="vs-text">VS</span><img class="flag" src="Ghana.png" alt="Ghana"></div></div>
-            <div class="match-card"><h3>Panama vs Croatia</h3><div class="flags-container"><img class="flag" src="Panama.png" alt="Panama"><span class="vs-text">VS</span><img class="flag" src="Croatia.png" alt="Croatia"></div></div>
+        
+        <div id="video-container">
+            <!-- Default server 1 loads here initially -->
+            <iframe src="https://footybite.ac/event/germany-vs-ivory-coast" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
         // VARIABLE LOGICS & VIDEO NODES
-        const server1Node = `<iframe src="https://footybite.ac/event/netherlands-vs-sweden" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server1Node = `<iframe src="https://footybite.ac/event/germany-vs-ivory-coast" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         
-        const server2Node = `<iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoibmV0aGVybGFuZHMtdnMtc3dlZGVuLTE4NmQ2YzZlIiwic3RyZWFtIjoxLCJ0cyI6MTc4MTk3NTY5M30.plAoEiWvnaNcazH5iXz6LFvPlRV4JC6uj0ZiU0hzPsg" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server2Node = `<iframe src="https://daddylive.li/live/stream=967-3d" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
         
-        const server3Node = `<iframe src="https://daddylive.li/live/stream=968-3d" width="100%" height="380px" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+        const server3Node = `<iframe src="https://techfare.info/match/germany-vs-ivory-coast-8fca92ae" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
 
         function changeServer(nodeString) {
             document.getElementById('video-container').innerHTML = nodeString;
@@ -203,14 +83,6 @@
                 liveStream.style.display = 'block';
             }
         });
-
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', async () => {
-                const registrations = await navigator.serviceWorker.getRegistrations();
-                await Promise.all(registrations.map((registration) => registration.unregister()));
-                await navigator.serviceWorker.register('/sw.js');
-            });
-        }
     </script>
 </body>
 </html>
