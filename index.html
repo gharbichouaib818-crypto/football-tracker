@@ -45,7 +45,7 @@
             background: rgba(0, 255, 136, 0.2); 
             display: flex; align-items: center; justify-content: center; 
             cursor: pointer; border: 2px dashed var(--primary-color); 
-            border-radius: 12px; transition: 0.3s;
+            border-radius: 12px; transition: 0.3s; padding: 20px;
         }
         .ad-container:hover { background: rgba(0, 255, 136, 0.3); }
 
@@ -61,8 +61,11 @@
             background: rgba(0, 0, 0, 0.6);
             border: 2px solid var(--primary-color);
             border-radius: 12px; padding: 20px; margin-bottom: 40px;
-            display: none; /* Hidden until 10 clicks */
+            display: none; 
         }
+
+        .server-buttons { margin-bottom: 15px; display: flex; justify-content: center; gap: 10px; }
+        .server-btn { background: var(--primary-color); color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
 
         .live-indicator {
             color: #ff3333; font-size: 22px; font-weight: bold;
@@ -95,8 +98,14 @@
 
     <div class="main-container">
         <div class="live-video-node" id="live-stream">
-            <h3 class="live-indicator">🔴 LIVE NOW: Brazil VS Haiti</h3>
-            <iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoiYnJhemlsLXZzLWhhaXRpLTgxMTMwNjI1Iiwic3RyZWFtIjo2LCJ0cyI6MTc4MTkxODM3NX0.oV4-VaXhkNwtmopxb4ZwX6i21u1ZCwUHRZLvMF3MSN0" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <h3 class="live-indicator">🔴 LIVE NOW: Turkey VS Paraguay</h3>
+            
+            <div class="server-buttons">
+                <button class="server-btn" onclick="document.getElementById('stream-frame').src='https://footybite.ac/event/turkey-vs-paraguay#'">Server 1</button>
+                <button class="server-btn" onclick="document.getElementById('stream-frame').src='https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8'">Server 2</button>
+            </div>
+            
+            <iframe id="stream-frame" src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
         <h2>Upcoming Matches</h2>
