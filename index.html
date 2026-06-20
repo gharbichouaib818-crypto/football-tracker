@@ -64,9 +64,6 @@
             display: none; 
         }
 
-        .server-buttons { margin-bottom: 15px; display: flex; justify-content: center; gap: 10px; }
-        .server-btn { background: var(--primary-color); color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
-
         .live-indicator {
             color: #ff3333; font-size: 22px; font-weight: bold;
             text-transform: uppercase; margin: 0 0 15px 0;
@@ -74,6 +71,43 @@
         }
 
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        .server-buttons { margin-bottom: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .server-btn { background: var(--primary-color); color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
+
+        /* Video and Chat Layout */
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .player-section {
+            flex: 1 1 70%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-section {
+            flex: 1 1 25%;
+            background: #ffffff;
+            min-height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .discord-link {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .discord-link a { 
+            color: #5865F2; 
+            text-decoration: none; 
+        }
 
         .match-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .match-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px 15px; }
@@ -97,15 +131,33 @@
     </div>
 
     <div class="main-container">
+        <!-- VIDEO NODE SECTION -->
         <div class="live-video-node" id="live-stream">
             <h3 class="live-indicator">🔴 LIVE NOW: Turkey VS Paraguay</h3>
             
             <div class="server-buttons">
-                <button class="server-btn" onclick="document.getElementById('stream-frame').src='https://footybite.ac/event/turkey-vs-paraguay#'">Server 1</button>
-                <button class="server-btn" onclick="document.getElementById('stream-frame').src='https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8'">Server 2</button>
+                <button class="server-btn" onclick="changeServer(server1Node)">Server 1</button>
+                <button class="server-btn" onclick="changeServer(server2Node)">Server 2</button>
+                <button class="server-btn" onclick="changeServer(server3Node)">Server 3</button>
             </div>
             
-            <iframe id="stream-frame" src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="content-wrapper">
+                <div class="player-section">
+                    <!-- Video Container for dynamic injection -->
+                    <div id="video-container">
+                        <iframe src="https://footybite.ac/event/turkey-vs-paraguay#" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="discord-link">
+                        Please join our Discord Channel <a href="#" target="_blank">Discord Server</a>
+                    </div>
+                </div>
+
+                <div class="chat-section" id="chat-container">
+                    <!-- Ensure your Chatango embed code goes back in here if you need to replace the placeholder -->
+                    <iframe width="100%" height="100%" frameborder="0" src="about:blank" style="background:#fff;"></iframe>
+                </div>
+            </div>
         </div>
 
         <h2>Upcoming Matches</h2>
@@ -124,6 +176,18 @@
     </div>
 
     <script>
+        // VARIABLE LOGICS & VIDEO NODES
+        const server1Node = `<iframe src="https://footybite.ac/event/turkey-vs-paraguay#" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        
+        const server2Node = `<iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        
+        const server3Node = `<iframe src="https://daddylive.li/embed/embed.php?id=969&player=2&source=tv.json" width="100%" height="380px" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+
+        function changeServer(nodeString) {
+            document.getElementById('video-container').innerHTML = nodeString;
+        }
+
+        // AD LOGIC
         let clicks = 0;
         const adContainer = document.getElementById('ad-container');
         const liveStream = document.getElementById('live-stream');
