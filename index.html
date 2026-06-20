@@ -37,7 +37,7 @@
 
         .navbar h1 { margin: 0; font-size: 28px; letter-spacing: 1px; text-transform: uppercase; }
         .navbar span { color: var(--primary-color); }
-        .arabic-note { font-size: 14px; color: #ffcc00; text-align: right; }
+        .arabic-note { font-size: 16px; color: #ffcc00; text-align: right; font-weight: bold; }
 
         .partner-spot { width: 100%; text-align: center; margin: 20px 0; }
         .ad-container { 
@@ -45,9 +45,10 @@
             background: rgba(0, 255, 136, 0.2); 
             display: flex; align-items: center; justify-content: center; 
             cursor: pointer; border: 2px dashed var(--primary-color); 
-            border-radius: 12px; transition: 0.3s;
+            border-radius: 12px; transition: 0.3s; padding: 20px;
         }
         .ad-container:hover { background: rgba(0, 255, 136, 0.3); }
+        .ad-text { font-size: 28px; font-weight: bold; color: #ffffff; text-align: center; }
 
         .main-container {
             max-width: 1200px; margin: 50px auto; padding: 30px;
@@ -61,7 +62,7 @@
             background: rgba(0, 0, 0, 0.6);
             border: 2px solid var(--primary-color);
             border-radius: 12px; padding: 20px; margin-bottom: 40px;
-            display: none; /* Hidden until 10 clicks */
+            display: none; 
         }
 
         .live-indicator {
@@ -84,12 +85,12 @@
 
     <div class="navbar">
         <h1>Shabaka<span>.io</span> / شبكة<span>.io</span></h1>
-        <div class="arabic-note">استخدام brave browser لتخطي الاعلانات</div>
+        <div class="arabic-note">استخدم brave browser لتخطي الاعلانات</div>
     </div>
 
     <div class="partner-spot" id="partner-spot">
         <div class="ad-container" id="ad-container">
-            <h2 id="click-text">CLICK HERE TO SUPPORT & UNLOCK STREAM (0/10)</h2>
+            <h2 id="click-text" class="ad-text">(0/10) استخدام brave browser لتخطي الاعلانات</h2>
         </div>
     </div>
 
@@ -123,7 +124,7 @@
         adContainer.addEventListener('click', () => {
             window.open('https://omg10.com/4/11175203', '_blank');
             clicks++;
-            clickText.innerText = `CLICK HERE TO SUPPORT & UNLOCK STREAM (${clicks}/10)`;
+            clickText.innerText = `(${clicks}/10) استخدام brave browser لتخطي الاعلانات`;
 
             if (clicks >= 10) {
                 document.getElementById('partner-spot').style.display = 'none';
