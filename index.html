@@ -4,44 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shabaka.io / شبكة.io</title>
+    <!-- Monetag Ad Script -->
     <script src="https://quge5.com/88/tag.min.js" data-zone="251698" async data-cfasync="false"></script>
     
     <style>
-        :root { --primary-color: #00ff88; --glass-bg: rgba(20, 20, 20, 0.85); }
-        body { background-image: url('ball.jpg'); background-size: cover; background-position: center; background-attachment: fixed; color: #ffffff; font-family: sans-serif; margin: 0; }
-        
-        .navbar { background-color: var(--glass-bg); padding: 15px 40px; display: flex; justify-content: space-between; border-bottom: 2px solid var(--primary-color); backdrop-filter: blur(8px); }
-        .main-container { max-width: 1200px; margin: 50px auto; padding: 30px; background-color: var(--glass-bg); border-radius: 15px; text-align: center; }
+        :root {
+            --primary-color: #00ff88; 
+            --glass-bg: rgba(20, 20, 20, 0.85); 
+        }
 
-        /* Partner Spot styling */
+        body {
+            background-image: url('ball.jpg');
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            color: #ffffff;               
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: var(--glass-bg);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            backdrop-filter: blur(8px); 
+        }
+
+        .navbar h1 { margin: 0; font-size: 28px; letter-spacing: 1px; text-transform: uppercase; }
+        .navbar span { color: var(--primary-color); }
+        .arabic-note { font-size: 14px; color: #ffcc00; text-align: right; }
+
         .partner-spot { width: 100%; text-align: center; margin: 20px 0; }
-        .ad-container { width: 100%; height: 500px; background: #333; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px dashed var(--primary-color); border-radius: 12px; }
-        
-        .live-video-node { background: rgba(0, 0, 0, 0.6); border: 2px solid var(--primary-color); border-radius: 12px; padding: 20px; margin-bottom: 40px; }
+        .ad-container { 
+            width: 80%; margin: 0 auto; height: 300px; 
+            background: rgba(0, 255, 136, 0.2); 
+            display: flex; align-items: center; justify-content: center; 
+            cursor: pointer; border: 2px dashed var(--primary-color); 
+            border-radius: 12px; transition: 0.3s;
+        }
+        .ad-container:hover { background: rgba(0, 255, 136, 0.3); }
+
+        .main-container {
+            max-width: 1200px; margin: 50px auto; padding: 30px;
+            background-color: var(--glass-bg); border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px); text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .live-video-node {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px; padding: 20px; margin-bottom: 40px;
+            display: none; /* Hidden until 10 clicks */
+        }
+
+        .live-indicator {
+            color: #ff3333; font-size: 22px; font-weight: bold;
+            text-transform: uppercase; margin: 0 0 15px 0;
+            animation: pulse 2s infinite; 
+        }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
         .match-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .match-card { background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; }
+        .match-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px 15px; }
+        .match-card h3 { font-size: 16px; margin: 0 0 15px 0; color: #ffffff; text-transform: uppercase; }
+        .flags-container { display: flex; justify-content: center; align-items: center; gap: 20px; }
         .flag { width: 70px; height: auto; border-radius: 4px; }
+        .vs-text { color: var(--primary-color); font-weight: bold; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="navbar"><h1>Shabaka<span>.io</span></h1></div>
+    <div class="navbar">
+        <h1>Shabaka<span>.io</span> / شبكة<span>.io</span></h1>
+        <div class="arabic-note">استخدام brave browser لتخطي الاعلانات</div>
+    </div>
 
     <div class="partner-spot" id="partner-spot">
         <div class="ad-container" id="ad-container">
-            <h2 id="click-text">CLICK HERE TO SUPPORT & UNLOCK STREAM (0/5)</h2>
+            <h2 id="click-text">CLICK HERE TO SUPPORT & UNLOCK STREAM (0/10)</h2>
         </div>
     </div>
 
     <div class="main-container">
-        <div class="live-video-node" id="live-stream" style="display: none;">
-            <h3 style="color: #ff3333;">🔴 LIVE NOW</h3>
-            <iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoiYnJhemlsLXZzLWhhaXRpLTgxMTMwNjI1Iiwic3RyZWFtIjo2LCJ0cyI6MTc4MTkxODM3NX0.oV4-VaXhkNwtmopxb4ZwX6i21u1ZCwUHRZLvMF3MSN0" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+        <div class="live-video-node" id="live-stream">
+            <h3 class="live-indicator">🔴 LIVE NOW: Brazil VS Haiti</h3>
+            <iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoiYnJhemlsLXZzLWhhaXRpLTgxMTMwNjI1Iiwic3RyZWFtIjo2LCJ0cyI6MTc4MTkxODM3NX0.oV4-VaXhkNwtmopxb4ZwX6i21u1ZCwUHRZLvMF3MSN0" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
         <h2>Upcoming Matches</h2>
         <div class="match-grid">
-            <!-- (Your matches list remains the same) -->
+            <div class="match-card"><h3>Tunisia VS Japan</h3><div class="flags-container"><img class="flag" src="Tunisia.png" alt="Tunisia"><span class="vs-text">VS</span><img class="flag" src="Japan.png" alt="Japan"></div></div>
+            <div class="match-card"><h3>Belgium VS Iran</h3><div class="flags-container"><img class="flag" src="Belgium.png" alt="Belgium"><span class="vs-text">VS</span><img class="flag" src="Iran.png" alt="Iran"></div></div>
+            <div class="match-card"><h3>New Zealand vs Egypt</h3><div class="flags-container"><img class="flag" src="New Zealand.png" alt="New Zealand"><span class="vs-text">VS</span><img class="flag" src="Egypt.png" alt="Egypt"></div></div>
+            <div class="match-card"><h3>Argentina vs Austria</h3><div class="flags-container"><img class="flag" src="Argentina.png" alt="Argentina"><span class="vs-text">VS</span><img class="flag" src="Austria.png" alt="Austria"></div></div>
+            <div class="match-card"><h3>France vs Iraq</h3><div class="flags-container"><img class="flag" src="France.png" alt="France"><span class="vs-text">VS</span><img class="flag" src="Iraq.png" alt="Iraq"></div></div>
+            <div class="match-card"><h3>Norway vs Senegal</h3><div class="flags-container"><img class="flag" src="Norway.png" alt="Norway"><span class="vs-text">VS</span><img class="flag" src="Senegal.png" alt="Senegal"></div></div>
+            <div class="match-card"><h3>Jordan vs Algeria</h3><div class="flags-container"><img class="flag" src="Jordan.png" alt="Jordan"><span class="vs-text">VS</span><img class="flag" src="Algeria.png" alt="Algeria"></div></div>
+            <div class="match-card"><h3>Portugal vs Uzbekistan</h3><div class="flags-container"><img class="flag" src="Portugal.png" alt="Portugal"><span class="vs-text">VS</span><img class="flag" src="Uzbekistan.png" alt="Uzbekistan"></div></div>
+            <div class="match-card"><h3>England vs Ghana</h3><div class="flags-container"><img class="flag" src="England.png" alt="England"><span class="vs-text">VS</span><img class="flag" src="Ghana.png" alt="Ghana"></div></div>
+            <div class="match-card"><h3>Panama vs Croatia</h3><div class="flags-container"><img class="flag" src="Panama.png" alt="Panama"><span class="vs-text">VS</span><img class="flag" src="Croatia.png" alt="Croatia"></div></div>
         </div>
     </div>
 
@@ -52,13 +121,11 @@
         const clickText = document.getElementById('click-text');
 
         adContainer.addEventListener('click', () => {
-            // Open your affiliate link
             window.open('https://omg10.com/4/11175203', '_blank');
-            
             clicks++;
-            clickText.innerText = `CLICK HERE TO SUPPORT & UNLOCK STREAM (${clicks}/5)`;
+            clickText.innerText = `CLICK HERE TO SUPPORT & UNLOCK STREAM (${clicks}/10)`;
 
-            if (clicks >= 5) {
+            if (clicks >= 10) {
                 document.getElementById('partner-spot').style.display = 'none';
                 liveStream.style.display = 'block';
             }
