@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shabaka.io / شبكة.io</title>
+    
+    <style>
+        /* 1. Visual Styling Variables */
+        :root {
+            --primary-color: #00ff88; 
+            --glass-bg: rgba(20, 20, 20, 0.85); 
+        }
+
+        body {
+            /* Background locked in */
+            background-image: url('ball.jpg');
+            background-size: cover;       
+            background-position: center;  
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            
+            color: #ffffff;                 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 2. Pro Navigation Bar Node */
+        .navbar {
+            background-color: var(--glass-bg);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-color);
+            backdrop-filter: blur(8px); 
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .navbar span {
+            color: var(--primary-color);
+        }
+
+        /* 3. Main Container Node */
+        .main-container {
+            max-width: 1200px; 
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--glass-bg);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .main-container h2 {
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* 4. NEW: Live Video Node Variables */
+        .live-video-node {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.2); /* Creates a subtle neon glow */
+            overflow: hidden;
+        }
+
+        .live-indicator {
+            color: #ff3333;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite; /* Connects the pulsing logic below */
+        }
+
+        /* Pulsing animation logic for the live indicator */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* 5. Match Grid and Card Variables */
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .match-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px 15px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .match-card h3 {
+            font-size: 16px;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 6. Side-by-Side Flag Nodes */
+        .flags-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .flag {
+            width: 70px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .vs-text {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>Shabaka<span>.io</span> / شبكة<span>.io</span></h1>
+    </div>
+
+    <div class="main-container">
+        
+        <div class="live-video-node">
+            <h3 class="live-indicator">🔴 LIVE NOW: Brazil VS Haiti</h3>
+            
+            <iframe 
+                src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoiYnJhemlsLXZzLWhhaXRpLTgxMTMwNjI1Iiwic3RyZWFtIjo2LCJ0cyI6MTc4MTkxODM3NX0.oV4-VaXhkNwtmopxb4ZwX6i21u1ZCwUHRZLvMF3MSN0" 
+                width="100%" 
+                height="500" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <h2>Upcoming Matches Pipeline</h2>
+        
+        <div class="match-grid">
+            
+            <div class="match-card">
+                <h3>Tunisia VS Japan</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Tunisia.png" alt="Tunisia"><span class="vs-text">VS</span><img class="flag" src="Japan.png" alt="Japan">
+                </div>
+            </div>
+            
+            <div class="match-card">
+                <h3>Belgium VS Iran</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Belgium.png" alt="Belgium"><span class="vs-text">VS</span><img class="flag" src="Iran.png" alt="Iran">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>New Zealand vs Egypt</h3>
+                <div class="flags-container">
+                    <img class="flag" src="New Zealand.png" alt="New Zealand"><span class="vs-text">VS</span><img class="flag" src="Egypt.png" alt="Egypt">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Argentina vs Austria</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Argentina.png" alt="Argentina"><span class="vs-text">VS</span><img class="flag" src="Austria.png" alt="Austria">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>France vs Iraq</h3>
+                <div class="flags-container">
+                    <img class="flag" src="France.png" alt="France"><span class="vs-text">VS</span><img class="flag" src="Iraq.png" alt="Iraq">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Norway vs Senegal</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Norway.png" alt="Norway"><span class="vs-text">VS</span><img class="flag" src="Senegal.png" alt="Senegal">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Jordan vs Algeria</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Jordan.png" alt="Jordan"><span class="vs-text">VS</span><img class="flag" src="Algeria.png" alt="Algeria">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Portugal vs Uzbekistan</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Portugal.png" alt="Portugal"><span class="vs-text">VS</span><img class="flag" src="Uzbekistan.png" alt="Uzbekistan">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>England vs Ghana</h3>
+                <div class="flags-container">
+                    <img class="flag" src="England.png" alt="England"><span class="vs-text">VS</span><img class="flag" src="Ghana.png" alt="Ghana">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Panama vs Croatia</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Panama.png" alt="Panama"><span class="vs-text">VS</span><img class="flag" src="Croatia.png" alt="Croatia">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Colombia vs D.R. Congo</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Colombia.png" alt="Colombia"><span class="vs-text">VS</span><img class="flag" src="D.R. Congo.png" alt="D.R. Congo">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Bosnia & Herzegovina vs Qatar</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Bosnia & Herzegovina.png" alt="Bosnia & Herzegovina"><span class="vs-text">VS</span><img class="flag" src="Qatar.png" alt="Qatar">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Switzerland vs Canada</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Switzerland.png" alt="Switzerland"><span class="vs-text">VS</span><img class="flag" src="Canada.png" alt="Canada">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Morocco vs Haiti</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Morocco.png" alt="Morocco"><span class="vs-text">VS</span><img class="flag" src="Haiti.png" alt="Haiti">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Scotland vs Brazil</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Scotland.png" alt="Scotland"><span class="vs-text">VS</span><img class="flag" src="Brazil.png" alt="Brazil">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Curacao vs Ivory Coast</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Curacao.png" alt="Curacao"><span class="vs-text">VS</span><img class="flag" src="Ivory Coast.png" alt="Ivory Coast">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Ecuador vs Germany</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Ecuador.png" alt="Ecuador"><span class="vs-text">VS</span><img class="flag" src="Germany.png" alt="Germany">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Japan vs Sweden</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Japan.png" alt="Japan"><span class="vs-text">VS</span><img class="flag" src="Sweden.png" alt="Sweden">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Tunisia vs Netherlands</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Tunisia.png" alt="Tunisia"><span class="vs-text">VS</span><img class="flag" src="Netherlands.png" alt="Netherlands">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Norway vs France</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Norway.png" alt="Norway"><span class="vs-text">VS</span><img class="flag" src="France.png" alt="France">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Senegal vs Iraq</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Senegal.png" alt="Senegal"><span class="vs-text">VS</span><img class="flag" src="Iraq.png" alt="Iraq">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Cape Verde vs Saudi Arabia</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Cape Verde.png" alt="Cape Verde"><span class="vs-text">VS</span><img class="flag" src="Saudi Arabia.png" alt="Saudi Arabia">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Uruguay vs Spain</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Uruguay.png" alt="Uruguay"><span class="vs-text">VS</span><img class="flag" src="Spain.png" alt="Spain">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Egypt vs Iran</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Egypt.png" alt="Egypt"><span class="vs-text">VS</span><img class="flag" src="Iran.png" alt="Iran">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>New Zealand vs Belgium</h3>
+                <div class="flags-container">
+                    <img class="flag" src="New Zealand.png" alt="New Zealand"><span class="vs-text">VS</span><img class="flag" src="Belgium.png" alt="Belgium">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Panama vs England</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Panama.png" alt="Panama"><span class="vs-text">VS</span><img class="flag" src="England.png" alt="England">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Colombia vs Portugal</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Colombia.png" alt="Colombia"><span class="vs-text">VS</span><img class="flag" src="Portugal.png" alt="Portugal">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Algeria vs Austria</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Algeria.png" alt="Algeria"><span class="vs-text">VS</span><img class="flag" src="Austria.png" alt="Austria">
+                </div>
+            </div>
+
+            <div class="match-card">
+                <h3>Jordan vs Argentina</h3>
+                <div class="flags-container">
+                    <img class="flag" src="Jordan.png" alt="Jordan"><span class="vs-text">VS</span><img class="flag" src="Argentina.png" alt="Argentina">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Our exact variable logics are preserved here
+        console.log("Website and visual variables initialized successfully for Shabaka.io.");
+        console.log("Live video node embedded and rendering successfully.");
+    </script>
+</body>
+</html>
