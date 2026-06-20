@@ -133,7 +133,7 @@
     <div class="main-container">
         <!-- VIDEO NODE SECTION -->
         <div class="live-video-node" id="live-stream">
-            <h3 class="live-indicator">🔴 LIVE NOW: Turkey VS Paraguay</h3>
+            <h3 class="live-indicator">🔴 LIVE NOW: Netherlands VS Sweden</h3>
             
             <div class="server-buttons">
                 <button class="server-btn" onclick="changeServer(server1Node)">Server 1</button>
@@ -145,7 +145,7 @@
                 <div class="player-section">
                     <!-- Video Container for dynamic injection -->
                     <div id="video-container">
-                        <iframe src="https://footybite.ac/event/turkey-vs-paraguay#" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="https://footybite.ac/event/netherlands-vs-sweden" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                     
                     <div class="discord-link">
@@ -177,11 +177,11 @@
 
     <script>
         // VARIABLE LOGICS & VIDEO NODES
-        const server1Node = `<iframe src="https://footybite.ac/event/turkey-vs-paraguay#" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server1Node = `<iframe src="https://footybite.ac/event/netherlands-vs-sweden" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         
-        const server2Node = `<iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoidC1ya2l5ZS12cy1wYXJhZ3VheS00ZmU5ZjNkZSIsInN0cmVhbSI6NiwidHMiOjE3ODE5MjY4NTF9.Oax08OOcRI0Uh0i8THKwWaWj2rTEFyjU3ArxjPZT6C8" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server2Node = `<iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoibmV0aGVybGFuZHMtdnMtc3dlZGVuLTE4NmQ2YzZlIiwic3RyZWFtIjoxLCJ0cyI6MTc4MTk3NTY5M30.plAoEiWvnaNcazH5iXz6LFvPlRV4JC6uj0ZiU0hzPsg" width="100%" height="450" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         
-        const server3Node = `<iframe src="https://daddylive.li/embed/embed.php?id=969&player=2&source=tv.json" width="100%" height="380px" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+        const server3Node = `<iframe src="https://daddylive.li/live/stream=968-3d" width="100%" height="380px" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
 
         function changeServer(nodeString) {
             document.getElementById('video-container').innerHTML = nodeString;
