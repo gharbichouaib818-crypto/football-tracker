@@ -44,7 +44,7 @@
     </div>
 
     <div id="live-stream">
-        <h2>🔴 تونس ضد اليابان مباشر</h2>
+        <h2>🔴نيوزيلاندا مصر مباشر</h2>
         
         <div class="server-buttons">
             <button class="server-btn" onclick="changeServer(server1Node)">السيرفر 1</button>
@@ -53,14 +53,14 @@
         </div>
         
         <div id="video-container">
-            <iframe src="https://footybite.ac/event/tunisia-vs-japan" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://footybite.ac/event/new-zealand-vs-egyp" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
-        const server1Node = `<iframe src="https://footybite.ac/event/tunisia-vs-japan" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        const server2Node = `<iframe src="https://daddylive.li/live/stream=967-3e" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
-        const server3Node = `<iframe src="https://dlhd.pk/stream/stream-969.php" width="100%" height="500" style="border:0;" allowfullscreen></iframe>`;
+        const server1Node = `<iframe src="https://footybite.ac/event/new-zealand-vs-egyp" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server2Node = `<iframe src="https://daddylive.li/embed/embed.php?id=967&player=3&source=tv.json" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+        const server3Node = `<iframe src="https://dlhd.pk/stream/stream-967.php" width="100%" height="500" style="border:0;" allowfullscreen></iframe>`;
 
         function changeServer(nodeString) {
             document.getElementById('video-container').innerHTML = nodeString;
