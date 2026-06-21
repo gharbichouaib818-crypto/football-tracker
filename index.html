@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Stream</title>
+    <!-- Monetag Ad Script -->
     <script src="https://quge5.com/88/tag.min.js" data-zone="251698" async data-cfasync="false"></script>
     
     <style>
@@ -42,7 +43,7 @@
     </div>
 
     <div id="live-stream">
-        <h2>🔴 مباشرة: ألمانيا ضد ساحل العاج</h2>
+        <h2>🔴 تونس ضد اليابان مباشر</h2>
         
         <div class="server-buttons">
             <button class="server-btn" onclick="changeServer(server1Node)">السيرفر 1</button>
@@ -51,14 +52,14 @@
         </div>
         
         <div id="video-container">
-            <iframe src="https://footybite.ac/event/germany-vs-ivory-coast" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://footybite.ac/event/tunisia-vs-japan" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
-        const server1Node = `<iframe src="https://footybite.ac/event/germany-vs-ivory-coast" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-        const server2Node = `<iframe src="https://daddylive.li/live/stream=967-3d" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
-        const server3Node = `<iframe src="https://techfare.info/match/germany-vs-ivory-coast-8fca92ae" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server1Node = `<iframe src="https://footybite.ac/event/tunisia-vs-japan" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server2Node = `<iframe src="https://daddylive.li/live/stream=967-3e" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+        const server3Node = `<iframe src="https://daddylive.li/live/stream=969-3e" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
 
         function changeServer(nodeString) {
             document.getElementById('video-container').innerHTML = nodeString;
