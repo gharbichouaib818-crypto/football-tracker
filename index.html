@@ -36,11 +36,14 @@
 <body>
 
     <div id="partner-spot">
-        <div class="ad-container" id="ad-container">
-            <div class="instruction-text" id="click-text">(0/10) brave browser استخدام لتخطي الاعلانات</div>
-            <div class="instruction-text">استخدم تطبيق <br> Urban VPN <br> وضعه على انجلترا</div>
+    <div class="ad-container" id="ad-container" style="display: block !important; visibility: visible !important;">
+        <div class="instruction-text" id="click-text">(0/10) brave browser استخدام لتخطي الاعلانات</div>
+        <div class="instruction-text">استخدم تطبيق <br> Urban VPN <br> وضعه على انجلترا</div>
+        <div class="instruction-text" style="color: black; font-weight: bold; border: 1px solid red; display: block !important;">
+            <br> اضغط هنا 10 مرات لتحميل الصفحة
         </div>
     </div>
+</div>
 
     <div id="live-stream">
         <h2>🔴 نيوزيلاندا ضد مصر مباشر</h2>
@@ -63,7 +66,7 @@
         const server2Node = `<iframe src="https://daddylive.li/embed/embed.php?id=967&player=3&source=tv.json" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
         const server3Node = `<iframe src="https://dlhd.pk/stream/stream-967.php" width="100%" height="500" style="border:0;" allowfullscreen></iframe>`;
         const server4Node = `<iframe src="https://dlhd.pk/stream/stream-91.php" width="100%" height="500" style="border:0;" allowfullscreen></iframe>`;
-        const server5Node = `<iframe src="https://sports.streamingworld.xyz/embed/eyJzbHVnIjoibmV3LXplYWxhbmQtdnMtZWd5cHQtZGE1NWIyYTQiLCJzdHJlYW0iOjIsInRzIjoxNzgyMDg4ODkyfQ.OX5GmxgJzDpA-R8pHWOLU-Dpii6-xwsFuhqqtGj9udo" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+        const server5Node = `<iframe src="https://daddylive.li/embed/embed.php?id=969&player=1&source=tv.json" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
 
         function changeServer(nodeString) {
             document.getElementById('video-container').innerHTML = nodeString;
