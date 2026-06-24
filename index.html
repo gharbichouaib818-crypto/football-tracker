@@ -1,100 +1,106 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Stream</title>
-    <!-- Monetag Ad Script -->
-    <script src="https://quge5.com/88/tag.min.js" data-zone="251698" async data-cfasync="false"></script>
+    <title>Live TV Hub</title>
     
+    <script async src="https://monetag.com/your-code-here.js"></script>
+
     <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        .ad-container { 
-            width: 80%; margin: 50px auto; min-height: 300px; 
-            background: rgba(0, 255, 136, 0.2); 
-            display: flex; flex-direction: column; align-items: center; justify-content: center; 
-            cursor: pointer; border: 2px dashed #00ff88; 
-            border-radius: 12px; padding: 20px;
-        }
-        #live-stream {
-            display: none;
-            margin-top: 20px;
-        }
-        .server-buttons { margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center; }
-        .server-btn { background: #00ff88; color: #000; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; margin: 5px; }
-        h2 { color: #ff3333; }
-        .instruction-text { font-size: 18px; margin: 10px 0; line-height: 1.6; }
+        body { background: url('balla.jpg') fixed center/cover; margin: 0; color: #fff; font-family: sans-serif; }
+        .network-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .network-card { background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; cursor: pointer; text-align: center; border: 1px solid #444; }
+        .network-card:hover { transform: scale(1.05); border: 1px solid #fff; }
+        
+        #player-wrapper { width: 85%; margin: 40px auto; text-align: center; }
+        iframe { width: 100%; height: 500px; background: #000; border: none; border-radius: 10px; }
+        
+        .server-container { margin-top: 20px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; }
+        .server-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+        .s-btn { background: #333; color: white; padding: 10px 20px; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .s-btn:hover { background: #007bff; border-color: #007bff; }
     </style>
 </head>
 <body>
 
-<div id="partner-spot">
-    <div class="ad-container" id="ad-container" style="display: block !important; visibility: visible !important;">
-        <div class="instruction-text" id="click-text">(0/10) brave browser استخدام لتخطي الاعلانات</div>
-        <div class="instruction-text">استخدم تطبيق <br> Urban VPN <br> وضعه على انجلترا</div>
-        <div class="instruction-text" style="color: hsl(0, 100%, 50%); font-weight: bold; border: 1px solid hwb(0 100% 0%); display: block !important;">
-            <br> اضغط هنا 10 مرات لتحميل الصفحة
+    <h1 style="text-align: center; padding-top: 20px;">Network Selection</h1>
+    <main class="network-grid" id="main-content"></main>
+
+    <div id="player-wrapper">
+        <iframe id="video-frame" src="" allowfullscreen></iframe>
+        <div class="server-container">
+            <h3 id="current-channel-name">Select a channel</h3>
+            <div class="server-btns" id="server-selector"></div>
         </div>
     </div>
-</div>
 
-<div id="live-stream">
-    <h2>🔴 beIN مباشر</h2>
-    
-    <div class="server-buttons">
-        <button class="server-btn" onclick="changeServer(server1Node)">السيرفر 1</button>
-        <button class="server-btn" onclick="changeServer(server2Node)">السيرفر 2</button>
-        <button class="server-btn" onclick="changeServer(server3Node)">السيرفر 3</button>
-        <button class="server-btn" onclick="changeServer(server4Node)">السيرفر 4</button>
-        <button class="server-btn" onclick="changeServer(server5Node)">السيرفر 5</button>
+    <div style="position: fixed; bottom: 0; width: 100%; z-index: 99999; text-align: center;">
+      <iframe data-aa=2445577 src=//acceptable.a-ads.com/2445577/?size=Adaptive style='border:0; padding:0; width:70%; height:auto; overflow:hidden;'></iframe>
     </div>
-    
-    <div id="video-container">
-        <iframe src="https://footybite.ac/fifa-world-cup" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
-</div>
 
-<script>
-    // السيرفرات المحدثة
-    const server1Node = `<iframe src="https://footybite.ac/fifa-world-cup" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-    const server2Node = `<iframe src="https://daddylive.li/embed/embed.php?id=967&player=3&source=tv.json" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
-    const server3Node = `<iframe src="https://dlhd.pk/stream/stream-967.php" width="100%" height="500" style="border:0;" allowfullscreen></iframe>`;
-    const server4Node = `<iframe src="https://dlhd.pk/watch/stream-966.php" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
-    const server5Node = `<iframe src="https://daddylive.li/embed/embed.php?id=969&player=1&source=tv.json" width="100%" height="500" style="border:0;" allow="autoplay; fullscreen *; picture-in-picture *; encrypted-media" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+    <script>
+        // Mapping all channels from your channels.txt
+        const tvData = {
+            "beIN Sports 1 Arabic": { id: 91 },
+            "beIN Sports 2 Arabic": { id: 92 },
+            "beIN Sports 3 Arabic": { id: 93 },
+            "beIN Sports 4 Arabic": { id: 94 },
+            "beIN Sports 5 Arabic": { id: 95 },
+            "beIN Sports 6 Arabic": { id: 96 },
+            "beIN Sports MENA English 1": { id: 61 },
+            "beIN Sports MENA English 2": { id: 90 },
+            "beIN Sports USA": { id: 425 },
+            "Fox Sports 1 USA": { id: 39 },
+            "Fox Sports 2 USA": { id: 758 },
+            "Fox Soccer Plus": { id: 756 },
+            "Fox Cricket": { id: 369 },
+            "DAZN 1 Bar DE": { id: 426 },
+            "DAZN 2 Bar DE": { id: 427 },
+            "DAZN 1 Spain": { id: 445 },
+            "DAZN 2 Spain": { id: 446 }
+        };
 
-    function changeServer(nodeString) {
-        document.getElementById('video-container').innerHTML = nodeString;
-    }
+        const serverMap = {
+            1: "stream/stream-",
+            2: "cast/stream-",
+            3: "watch/stream-",
+            4: "plus/stream-",
+            5: "casting/stream-",
+            6: "player/stream-"
+        };
 
-    // منطق الإعلانات
-    let clicks = 0;
-    const adContainer = document.getElementById('ad-container');
-    const liveStream = document.getElementById('live-stream');
-    const clickText = document.getElementById('click-text');
+        const container = document.getElementById('main-content');
+        const frame = document.getElementById('video-frame');
+        const channelTitle = document.getElementById('current-channel-name');
+        const serverSelector = document.getElementById('server-selector');
 
-    adContainer.addEventListener('click', () => {
-        const urls = ['https://omg10.com/4/11175198', 'https://omg10.com/4/11175191'];
-        window.open(urls[clicks % urls.length], '_blank');
-        clicks++;
-        clickText.innerText = `(${clicks}/10) brave browser استخدام لتخطي الاعلانات`;
-
-        if (clicks >= 10) {
-            document.getElementById('partner-spot').style.display = 'none';
-            liveStream.style.display = 'block';
+        // Create cards dynamically
+        for (const name in tvData) {
+            const div = document.createElement('div');
+            div.className = 'network-card';
+            div.innerText = name;
+            div.onclick = () => loadChannel(name);
+            container.appendChild(div);
         }
-    });
 
-    // تسجيل الـ Service Worker
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js');
-    }
-</script>
+        function loadChannel(name) {
+            const channelId = tvData[name].id;
+            channelTitle.innerText = `Servers for: ${name}`;
+            serverSelector.innerHTML = ''; 
+
+            for (let i = 1; i <= 6; i++) {
+                const btn = document.createElement('button');
+                btn.className = 's-btn';
+                btn.innerText = 'Server ' + i;
+                btn.onclick = () => {
+                    frame.src = `https://dlhd.pk/${serverMap[i]}${channelId}.php`;
+                };
+                serverSelector.appendChild(btn);
+            }
+            // Default to Server 1
+            frame.src = `https://dlhd.pk/${serverMap[1]}${channelId}.php`;
+        }
+    </script>
 </body>
 </html>
