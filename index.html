@@ -20,6 +20,7 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
+            gap: 30px; /* Space between buttons */
             height: 100vh; 
         }
         
@@ -29,17 +30,18 @@
             padding: 20px; 
             cursor: pointer; 
             border-radius: 10px;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
         }
-        .nav-btn:hover { background: rgba(255, 255, 255, 0.4); }
+        .nav-btn:hover { 
+            background: rgba(255, 255, 255, 0.4); 
+            transform: scale(1.05);
+        }
         .nav-btn img { width: 200px; height: auto; }
 
-        /* BeIN Sports New Layout Section */
-        #bein-section { 
-            display: none; 
-            padding: 40px 20px; 
-        }
+        /* General Section Styling */
+        .page-section { display: none; padding: 40px 20px; }
 
+        /* BeIN Sports New Layout Section */
         .main-layout {
             display: flex;
             justify-content: center;
@@ -57,13 +59,11 @@
             overflow-y: auto;
             width: 260px;
             padding: 10px;
-            /* Scrollbar styling for a cleaner look */
             scrollbar-width: thin;
         }
         .channel-column::-webkit-scrollbar { width: 6px; }
         .channel-column::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.5); border-radius: 10px; }
 
-        /* The Pill Buttons */
         .pill-btn {
             border: none;
             padding: 14px 20px;
@@ -77,25 +77,15 @@
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
-        .pill-btn:hover { 
-            transform: scale(1.05); 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.4); 
-        }
+        .pill-btn:hover { transform: scale(1.05); }
 
-        /* Pastel Colors for Pills */
-        .color-1 { background-color: #89cff0; } /* Blue */
-        .color-2 { background-color: #48d1cc; } /* Teal */
-        .color-3 { background-color: #f08080; } /* Pink */
-        .color-4 { background-color: #fca311; } /* Orange */
-        .color-5 { background-color: #77dd77; } /* Green */
+        .color-1 { background-color: #89cff0; }
+        .color-2 { background-color: #48d1cc; }
+        .color-3 { background-color: #f08080; }
+        .color-4 { background-color: #fca311; }
+        .color-5 { background-color: #77dd77; }
 
-        /* Player Area */
-        .center-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 650px;
-        }
+        .center-area { display: flex; flex-direction: column; align-items: center; width: 650px; }
         
         #player-container { 
             background: rgba(0, 0, 0, 0.8); 
@@ -107,58 +97,37 @@
             border: 2px solid rgba(255,255,255,0.2);
         }
         
-        #selected-channel-name {
-            color: white;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-family: sans-serif;
-            text-shadow: 1px 1px 2px black;
-        }
+        #selected-channel-name { color: white; margin-top: 0; margin-bottom: 15px; }
 
-        iframe { 
-            width: 100%; 
-            height: 400px; 
-            border: none; 
-            border-radius: 10px; 
-            background: black;
-        }
+        iframe { width: 100%; height: 400px; border: none; border-radius: 10px; background: black; }
         
-        #server-buttons { 
-            margin-top: 20px; 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 10px; 
-        }
+        #server-buttons { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         
         .server-btn { 
-            padding: 10px 20px; 
-            border-radius: 20px; 
-            border: none; 
-            background: #fff; 
-            color: #333;
-            font-weight: bold;
-            cursor: pointer; 
-            transition: background 0.2s;
+            padding: 10px 20px; border-radius: 20px; border: none; background: #fff; 
+            font-weight: bold; cursor: pointer; transition: background 0.2s;
         }
-        .server-btn:hover {
-            background: #e0e0e0;
-        }
+        .server-btn:hover { background: #e0e0e0; }
+
+        /* Empty DAZN Page styling */
+        #dazn-section { text-align: center; color: white; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <!-- Main View -->
     <div id="main-menu">
-        <button class="nav-btn" onclick="showBeinPage()">
+        <button class="nav-btn" onclick="showSection('bein-section')">
             <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
+        </button>
+        <button class="nav-btn" onclick="showSection('dazn-section')">
+            <img src="DAZN_Channel_(2021)_Logo.svg" alt="DAZN">
         </button>
     </div>
 
-    <!-- BeIN Sports Page (Hidden initially) -->
-    <div id="bein-section">
+    <!-- BeIN Sports Page -->
+    <div id="bein-section" class="page-section">
         <div class="main-layout">
-            
             <!-- Left Column: Channels 1-21 -->
             <div class="channel-column">
                 <button class="pill-btn color-1" onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])">Bein Arabic 4K Quality</button>
@@ -184,18 +153,16 @@
                 <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'])">beIN Sports 1 France</button>
             </div>
 
-            <!-- Center Column: Video Player and Servers -->
+            <!-- Center Column -->
             <div class="center-area">
                 <div id="player-container">
                     <h2 id="selected-channel-name">Select a Channel</h2>
                     <iframe id="video-frame" src="" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
-                    <div id="server-buttons">
-                        <!-- Server buttons dynamically populate here -->
-                    </div>
+                    <div id="server-buttons"></div>
                 </div>
             </div>
 
-            <!-- Right Column: Channels 22-42 -->
+            <!-- Right Column -->
             <div class="channel-column">
                 <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'])">beIN Sports 2 France</button>
                 <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'])">beIN Sports 3 France</button>
@@ -222,32 +189,30 @@
         </div>
     </div>
 
+    <!-- Empty DAZN Page -->
+    <div id="dazn-section" class="page-section">
+        <h1>DAZN Channels</h1>
+    </div>
+
     <script>
-        // Function to toggle views
-        function showBeinPage() {
+        // Universal navigation function
+        function showSection(sectionId) {
             document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('bein-section').style.display = 'block';
+            document.getElementById(sectionId).style.display = 'block';
         }
 
-        // Function to load the channel into the player
         function loadChannel(name, links) {
-            // Update the title
             document.getElementById('selected-channel-name').innerText = name;
-            
-            // Set the video player source to the first link by default
             document.getElementById('video-frame').src = links[0];
             
-            // Generate server buttons dynamically based on the available links
             const serverContainer = document.getElementById('server-buttons');
-            serverContainer.innerHTML = ''; // Clear old buttons
+            serverContainer.innerHTML = ''; 
             
             links.forEach((link, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'server-btn';
                 btn.innerText = 'Server ' + (index + 1);
-                btn.onclick = () => { 
-                    document.getElementById('video-frame').src = link; 
-                };
+                btn.onclick = () => { document.getElementById('video-frame').src = link; };
                 serverContainer.appendChild(btn);
             });
         }
