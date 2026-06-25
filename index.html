@@ -90,6 +90,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            background-color: #89cff0; /* Default color */
         }
         .pill-btn:hover { transform: scale(1.05); }
 
@@ -128,7 +129,6 @@
 </head>
 <body>
 
-    <!-- Main View -->
     <div id="main-menu">
         <button class="nav-btn" onclick="showSection('bein-section')">
             <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
@@ -138,11 +138,9 @@
         </button>
     </div>
 
-    <!-- BeIN Sports Page -->
     <div id="bein-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
-            <!-- Left Column: Channels 1-21 -->
             <div class="channel-column">
                 <button class="pill-btn color-1" onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])">Bein Arabic 4K Quality</button>
                 <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'])">beIN Sports 1 Arabic</button>
@@ -167,7 +165,6 @@
                 <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'])">beIN Sports 1 France</button>
             </div>
 
-            <!-- Center Column -->
             <div class="center-area">
                 <div id="player-container">
                     <h2 id="selected-channel-name">Select a Channel</h2>
@@ -176,7 +173,6 @@
                 </div>
             </div>
 
-            <!-- Right Column -->
             <div class="channel-column">
                 <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'])">beIN Sports 2 France</button>
                 <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'])">beIN Sports 3 France</button>
@@ -203,7 +199,6 @@
         </div>
     </div>
 
-    <!-- Empty DAZN Page -->
     <div id="dazn-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <h1>DAZN Channels</h1>
