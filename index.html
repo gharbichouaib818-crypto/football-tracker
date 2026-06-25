@@ -55,7 +55,7 @@
         }
         .back-btn:hover { background: rgba(255, 255, 255, 0.4); }
 
-        /* BeIN Sports Layout */
+        /* Layout */
         .main-layout {
             display: flex;
             justify-content: center;
@@ -90,7 +90,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             color: white;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            background-color: #89cff0; /* Default color */
+            background-color: #89cff0;
         }
         .pill-btn:hover { transform: scale(1.05); }
 
@@ -102,7 +102,7 @@
 
         .center-area { display: flex; flex-direction: column; align-items: center; width: 650px; }
         
-        #player-container { 
+        .player-container { 
             background: rgba(0, 0, 0, 0.8); 
             padding: 20px; 
             border-radius: 15px;
@@ -112,23 +112,22 @@
             border: 2px solid rgba(255,255,255,0.2);
         }
         
-        #selected-channel-name { color: white; margin-top: 0; margin-bottom: 15px; }
+        .channel-name { color: white; margin-top: 0; margin-bottom: 15px; }
 
         iframe { width: 100%; height: 400px; border: none; border-radius: 10px; background: black; }
         
-        #server-buttons { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .server-buttons { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
         
         .server-btn { 
             padding: 10px 20px; border-radius: 20px; border: none; background: #fff; 
             font-weight: bold; cursor: pointer; transition: background 0.2s;
         }
         .server-btn:hover { background: #e0e0e0; }
-
-        #dazn-section { text-align: center; color: white; margin-top: 50px; }
     </style>
 </head>
 <body>
 
+    <!-- Main View -->
     <div id="main-menu">
         <button class="nav-btn" onclick="showSection('bein-section')">
             <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
@@ -138,6 +137,7 @@
         </button>
     </div>
 
+    <!-- BeIN Sports Page -->
     <div id="bein-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
@@ -166,10 +166,10 @@
             </div>
 
             <div class="center-area">
-                <div id="player-container">
-                    <h2 id="selected-channel-name">Select a Channel</h2>
+                <div id="player-container" class="player-container">
+                    <h2 id="selected-channel-name" class="channel-name">Select a Channel</h2>
                     <iframe id="video-frame" src="" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
-                    <div id="server-buttons"></div>
+                    <div id="server-buttons" class="server-buttons"></div>
                 </div>
             </div>
 
@@ -199,9 +199,21 @@
         </div>
     </div>
 
+    <!-- DAZN Page -->
     <div id="dazn-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
-        <h1>DAZN Channels</h1>
+        <div class="main-layout">
+            <div class="channel-column">
+                <button class="pill-btn color-1" onclick="loadChannelDazn('DAZN 1 Bar DE', ['https://dlhd.pk/stream/stream-426.php', 'https://dlhd.pk/cast/stream-426.php', 'https://dlhd.pk/watch/stream-426.php', 'https://dlhd.pk/plus/stream-426.php', 'https://dlhd.pk/casting/stream-426.php', 'https://dlhd.pk/player/stream-426.php'])">DAZN 1 Bar DE</button>
+            </div>
+            <div class="center-area">
+                <div id="player-container-dazn" class="player-container">
+                    <h2 id="selected-channel-name-dazn" class="channel-name">Select a Channel</h2>
+                    <iframe id="video-frame-dazn" src="" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div id="server-buttons-dazn" class="server-buttons"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -216,18 +228,32 @@
             document.getElementById('dazn-section').style.display = 'none';
         }
 
+        // BeIN Loader
         function loadChannel(name, links) {
             document.getElementById('selected-channel-name').innerText = name;
             document.getElementById('video-frame').src = links[0];
-            
             const serverContainer = document.getElementById('server-buttons');
             serverContainer.innerHTML = ''; 
-            
             links.forEach((link, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'server-btn';
                 btn.innerText = 'Server ' + (index + 1);
                 btn.onclick = () => { document.getElementById('video-frame').src = link; };
+                serverContainer.appendChild(btn);
+            });
+        }
+
+        // DAZN Loader
+        function loadChannelDazn(name, links) {
+            document.getElementById('selected-channel-name-dazn').innerText = name;
+            document.getElementById('video-frame-dazn').src = links[0];
+            const serverContainer = document.getElementById('server-buttons-dazn');
+            serverContainer.innerHTML = ''; 
+            links.forEach((link, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'server-btn';
+                btn.innerText = 'Server ' + (index + 1);
+                btn.onclick = () => { document.getElementById('video-frame-dazn').src = link; };
                 serverContainer.appendChild(btn);
             });
         }
