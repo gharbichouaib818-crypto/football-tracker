@@ -2,40 +2,21 @@
 <html lang="en">
 <head>
     <style>
-        body {
-            background-image: url('balla.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            color: #333;
-        }
-
-        /* Main Menu View */
+        body { background-image: url('balla.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; min-height: 100vh; color: #333; }
         #main-menu { display: flex; justify-content: center; align-items: center; gap: 30px; height: 100vh; }
         .nav-btn { background: rgba(255, 255, 255, 0.2); border: 2px solid white; padding: 20px; cursor: pointer; border-radius: 10px; transition: background 0.3s, transform 0.2s; }
         .nav-btn:hover { background: rgba(255, 255, 255, 0.4); transform: scale(1.05); }
         .nav-btn img { width: 200px; height: auto; }
-
-        /* General Section Styling */
         .page-section { display: none; padding: 20px; }
         .back-btn { background: rgba(255, 255, 255, 0.2); border: 2px solid white; color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-bottom: 20px; font-weight: bold; transition: background 0.3s; }
         .back-btn:hover { background: rgba(255, 255, 255, 0.4); }
-
-        /* Layout */
         .main-layout { display: flex; justify-content: center; align-items: flex-start; gap: 20px; max-width: 1300px; margin: 0 auto; }
         .channel-column { display: flex; flex-direction: column; gap: 15px; max-height: 80vh; overflow-y: auto; width: 260px; padding: 10px; scrollbar-width: thin; }
         .channel-column::-webkit-scrollbar { width: 6px; }
         .channel-column::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.5); border-radius: 10px; }
-
         .pill-btn { border: none; padding: 14px 20px; border-radius: 50px; cursor: pointer; font-size: 14px; font-weight: bold; transition: transform 0.2s, box-shadow 0.3s; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.3); color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); background-color: #89cff0; }
         .pill-btn:hover { transform: scale(1.05); }
         .color-1 { background-color: #89cff0; } .color-2 { background-color: #48d1cc; } .color-3 { background-color: #f08080; } .color-4 { background-color: #fca311; } .color-5 { background-color: #77dd77; }
-
         .center-area { display: flex; flex-direction: column; align-items: center; width: 650px; }
         .player-container { background: rgba(0, 0, 0, 0.8); padding: 20px; border-radius: 15px; text-align: center; width: 100%; box-shadow: 0 10px 20px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.2); }
         .channel-name { color: white; margin-top: 0; margin-bottom: 15px; }
@@ -47,25 +28,38 @@
 </head>
 <body>
 
-    <!-- Main View -->
     <div id="main-menu">
-        <button class="nav-btn" onclick="showSection('bein-section')">
-            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
-        </button>
-        <button class="nav-btn" onclick="showSection('dazn-section')">
-            <img src="DAZN_Channel_(2021)_Logo.svg" alt="DAZN">
-        </button>
+        <button class="nav-btn" onclick="showSection('bein-section')"><img src="BeIN_Sports_logo.svg" alt="BeIN Sports"></button>
+        <button class="nav-btn" onclick="showSection('dazn-section')"><img src="DAZN_Channel_(2021)_Logo.svg" alt="DAZN"></button>
     </div>
 
-    <!-- BeIN Sports Page -->
+    <!-- BeIN Section -->
     <div id="bein-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
             <div class="channel-column">
                 <button class="pill-btn color-1" onclick="handleAdClick('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'], false)">Bein Arabic 4K Quality</button>
                 <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'], false)">beIN Sports 1 Arabic</button>
-                <!-- Add ad trigger to all buttons -->
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN Sports 2 Arabic', ['https://dlhd.pk/stream/stream-92.php', 'https://dlhd.pk/cast/stream-92.php', 'https://dlhd.pk/watch/stream-92.php', 'https://dlhd.pk/plus/stream-92.php', 'https://dlhd.pk/casting/stream-92.php', 'https://dlhd.pk/player/stream-92.php'], false)">beIN Sports 2 Arabic</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports 3 Arabic', ['https://dlhd.pk/stream/stream-93.php', 'https://dlhd.pk/cast/stream-93.php', 'https://dlhd.pk/watch/stream-93.php', 'https://dlhd.pk/plus/stream-93.php', 'https://dlhd.pk/casting/stream-93.php', 'https://dlhd.pk/player/stream-93.php'], false)">beIN Sports 3 Arabic</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports 4 Arabic', ['https://dlhd.pk/stream/stream-94.php', 'https://dlhd.pk/cast/stream-94.php', 'https://dlhd.pk/watch/stream-94.php', 'https://dlhd.pk/plus/stream-94.php', 'https://dlhd.pk/casting/stream-94.php', 'https://dlhd.pk/player/stream-94.php'], false)">beIN Sports 4 Arabic</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN Sports 5 Arabic', ['https://dlhd.pk/stream/stream-95.php', 'https://dlhd.pk/cast/stream-95.php', 'https://dlhd.pk/watch/stream-95.php', 'https://dlhd.pk/plus/stream-95.php', 'https://dlhd.pk/casting/stream-95.php', 'https://dlhd.pk/player/stream-95.php'], false)">beIN Sports 5 Arabic</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports 6 Arabic', ['https://dlhd.pk/stream/stream-96.php', 'https://dlhd.pk/cast/stream-96.php', 'https://dlhd.pk/watch/stream-96.php', 'https://dlhd.pk/plus/stream-96.php', 'https://dlhd.pk/casting/stream-96.php', 'https://dlhd.pk/player/stream-96.php'], false)">beIN Sports 6 Arabic</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN Sports 7 Arabic', ['https://dlhd.pk/stream/stream-97.php', 'https://dlhd.pk/cast/stream-97.php', 'https://dlhd.pk/watch/stream-97.php', 'https://dlhd.pk/plus/stream-97.php', 'https://dlhd.pk/casting/stream-97.php', 'https://dlhd.pk/player/stream-97.php'], false)">beIN Sports 7 Arabic</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports 8 Arabic', ['https://dlhd.pk/stream/stream-98.php', 'https://dlhd.pk/cast/stream-98.php', 'https://dlhd.pk/watch/stream-98.php', 'https://dlhd.pk/plus/stream-98.php', 'https://dlhd.pk/casting/stream-98.php', 'https://dlhd.pk/player/stream-98.php'], false)">beIN Sports 8 Arabic</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports 9 Arabic', ['https://dlhd.pk/stream/stream-99.php', 'https://dlhd.pk/cast/stream-99.php', 'https://dlhd.pk/watch/stream-99.php', 'https://dlhd.pk/plus/stream-99.php', 'https://dlhd.pk/casting/stream-99.php', 'https://dlhd.pk/player/stream-99.php'], false)">beIN Sports 9 Arabic</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN SPORTS XTRA 1', ['https://dlhd.pk/stream/stream-100.php', 'https://dlhd.pk/cast/stream-100.php', 'https://dlhd.pk/watch/stream-100.php', 'https://dlhd.pk/plus/stream-100.php', 'https://dlhd.pk/casting/stream-100.php', 'https://dlhd.pk/player/stream-100.php'], false)">beIN SPORTS XTRA 1</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports MENA English 1', ['https://dlhd.pk/stream/stream-61.php', 'https://dlhd.pk/cast/stream-61.php', 'https://dlhd.pk/watch/stream-61.php', 'https://dlhd.pk/plus/stream-61.php', 'https://dlhd.pk/casting/stream-61.php', 'https://dlhd.pk/player/stream-61.php'], false)">beIN Sports MENA English 1</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN Sports MENA English 2', ['https://dlhd.pk/stream/stream-90.php', 'https://dlhd.pk/cast/stream-90.php', 'https://dlhd.pk/watch/stream-90.php', 'https://dlhd.pk/plus/stream-90.php', 'https://dlhd.pk/casting/stream-90.php', 'https://dlhd.pk/player/stream-90.php'], false)">beIN Sports MENA English 2</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports MAX 4 France', ['https://dlhd.pk/stream/stream-494.php', 'https://dlhd.pk/cast/stream-494.php', 'https://dlhd.pk/watch/stream-494.php', 'https://dlhd.pk/plus/stream-494.php', 'https://dlhd.pk/casting/stream-494.php', 'https://dlhd.pk/player/stream-494.php'], false)">beIN Sports MAX 4 France</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports MAX 5 France', ['https://dlhd.pk/stream/stream-495.php', 'https://dlhd.pk/cast/stream-495.php', 'https://dlhd.pk/watch/stream-495.php', 'https://dlhd.pk/plus/stream-495.php', 'https://dlhd.pk/casting/stream-495.php', 'https://dlhd.pk/player/stream-495.php'], false)">beIN Sports MAX 5 France</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN Sports MAX 6 France', ['https://dlhd.pk/stream/stream-496.php', 'https://dlhd.pk/cast/stream-496.php', 'https://dlhd.pk/watch/stream-496.php', 'https://dlhd.pk/plus/stream-496.php', 'https://dlhd.pk/casting/stream-496.php', 'https://dlhd.pk/player/stream-496.php'], false)">beIN Sports MAX 6 France</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports MAX 7 France', ['https://dlhd.pk/cast/stream-497.php', 'https://dlhd.pk/watch/stream-497.php', 'https://dlhd.pk/plus/stream-497.php', 'https://dlhd.pk/casting/stream-497.php', 'https://dlhd.pk/player/stream-497.php'], false)">beIN Sports MAX 7 France</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN Sports MAX 8 France', ['https://dlhd.pk/stream/stream-498.php', 'https://dlhd.pk/cast/stream-498.php', 'https://dlhd.pk/watch/stream-498.php', 'https://dlhd.pk/plus/stream-498.php', 'https://dlhd.pk/casting/stream-498.php', 'https://dlhd.pk/player/stream-498.php'], false)">beIN Sports MAX 8 France</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports MAX 9 France', ['https://dlhd.pk/stream/stream-499.php', 'https://dlhd.pk/cast/stream-499.php', 'https://dlhd.pk/watch/stream-499.php', 'https://dlhd.pk/plus/stream-499.php', 'https://dlhd.pk/casting/stream-499.php', 'https://dlhd.pk/player/stream-499.php'], false)">beIN Sports MAX 9 France</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports MAX 10 France', ['https://dlhd.pk/stream/stream-500.php', 'https://dlhd.pk/cast/stream-500.php', 'https://dlhd.pk/watch/stream-500.php', 'https://dlhd.pk/plus/stream-500.php', 'https://dlhd.pk/casting/stream-500.php', 'https://dlhd.pk/player/stream-500.php'], false)">beIN Sports MAX 10 France</button>
             </div>
+            
             <div class="center-area">
                 <div id="player-container" class="player-container">
                     <h2 id="selected-channel-name" class="channel-name">Select a Channel</h2>
@@ -73,22 +67,53 @@
                     <div id="server-buttons" class="server-buttons"></div>
                 </div>
             </div>
+
             <div class="channel-column">
-                 <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'], false)">beIN Sports 2 France</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'], false)">beIN Sports 1 France</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'], false)">beIN Sports 2 France</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'], false)">beIN Sports 3 France</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN SPORTS 1 Turkey', ['https://dlhd.pk/stream/stream-62.php', 'https://dlhd.pk/cast/stream-62.php', 'https://dlhd.pk/watch/stream-62.php', 'https://dlhd.pk/plus/stream-62.php', 'https://dlhd.pk/casting/stream-62.php', 'https://dlhd.pk/player/stream-62.php'], false)">beIN SPORTS 1 Turkey</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN SPORTS 2 Turkey', ['https://dlhd.pk/stream/stream-63.php', 'https://dlhd.pk/cast/stream-63.php', 'https://dlhd.pk/watch/stream-63.php', 'https://dlhd.pk/plus/stream-63.php', 'https://dlhd.pk/casting/stream-63.php', 'https://dlhd.pk/player/stream-63.php'], false)">beIN SPORTS 2 Turkey</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN SPORTS 3 Turkey', ['https://dlhd.pk/stream/stream-64.php', 'https://dlhd.pk/cast/stream-64.php', 'https://dlhd.pk/watch/stream-64.php', 'https://dlhd.pk/plus/stream-64.php', 'https://dlhd.pk/casting/stream-64.php', 'https://dlhd.pk/player/stream-64.php'], false)">beIN SPORTS 3 Turkey</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN SPORTS 4 Turkey', ['https://dlhd.pk/stream/stream-67.php', 'https://dlhd.pk/cast/stream-67.php', 'https://dlhd.pk/watch/stream-67.php', 'https://dlhd.pk/plus/stream-67.php', 'https://dlhd.pk/casting/stream-67.php', 'https://dlhd.pk/player/stream-67.php'], false)">beIN SPORTS 4 Turkey</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('BeIN Sports HD Qatar', ['https://dlhd.pk/stream/stream-578.php', 'https://dlhd.pk/cast/stream-578.php', 'https://dlhd.pk/watch/stream-578.php', 'https://dlhd.pk/plus/stream-578.php', 'https://dlhd.pk/casting/stream-578.php', 'https://dlhd.pk/player/stream-578.php'], false)">BeIN Sports HD Qatar</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('BeIN SPORTS USA', ['https://dlhd.pk/stream/stream-425.php', 'https://dlhd.pk/cast/stream-425.php', 'https://dlhd.pk/watch/stream-425.php', 'https://dlhd.pk/plus/stream-425.php', 'https://dlhd.pk/casting/stream-425.php', 'https://dlhd.pk/player/stream-425.php'], false)">BeIN SPORTS USA</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN SPORTS en Español', ['https://dlhd.pk/stream/stream-372.php', 'https://dlhd.pk/cast/stream-372.php', 'https://dlhd.pk/watch/stream-372.php', 'https://dlhd.pk/plus/stream-372.php', 'https://dlhd.pk/casting/stream-372.php', 'https://dlhd.pk/player/stream-372.php'], false)">beIN SPORTS en Español</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN SPORTS Australia 1', ['https://dlhd.pk/stream/stream-491.php', 'https://dlhd.pk/cast/stream-491.php', 'https://dlhd.pk/watch/stream-491.php', 'https://dlhd.pk/plus/stream-491.php', 'https://dlhd.pk/casting/stream-491.php', 'https://dlhd.pk/player/stream-491.php'], false)">beIN SPORTS Australia 1</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN SPORTS Australia 2', ['https://dlhd.pk/stream/stream-492.php', 'https://dlhd.pk/cast/stream-492.php', 'https://dlhd.pk/watch/stream-492.php', 'https://dlhd.pk/plus/stream-492.php', 'https://dlhd.pk/casting/stream-492.php', 'https://dlhd.pk/player/stream-492.php'], false)">beIN SPORTS Australia 2</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN SPORTS Australia 3', ['https://dlhd.pk/stream/stream-493.php', 'https://dlhd.pk/cast/stream-493.php', 'https://dlhd.pk/watch/stream-493.php', 'https://dlhd.pk/plus/stream-493.php', 'https://dlhd.pk/casting/stream-493.php', 'https://dlhd.pk/player/stream-493.php'], false)">beIN SPORTS Australia 3</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports 1 Malaysia', ['https://dlhd.pk/stream/stream-712.php', 'https://dlhd.pk/cast/stream-712.php', 'https://dlhd.pk/watch/stream-712.php', 'https://dlhd.pk/plus/stream-712.php', 'https://dlhd.pk/casting/stream-712.php', 'https://dlhd.pk/player/stream-712.php'], false)">beIN Sports 1 Malaysia</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports 2 Malaysia', ['https://dlhd.pk/stream/stream-713.php', 'https://dlhd.pk/cast/stream-713.php', 'https://dlhd.pk/watch/stream-713.php', 'https://dlhd.pk/plus/stream-713.php', 'https://dlhd.pk/casting/stream-713.php', 'https://dlhd.pk/player/stream-713.php'], false)">beIN Sports 2 Malaysia</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN Sports 3 Malaysia', ['https://dlhd.pk/stream/stream-714.php', 'https://dlhd.pk/cast/stream-714.php', 'https://dlhd.pk/watch/stream-714.php', 'https://dlhd.pk/plus/stream-714.php', 'https://dlhd.pk/casting/stream-714.php', 'https://dlhd.pk/player/stream-714.php'], false)">beIN Sports 3 Malaysia</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('bein Sports 5 Turkey', ['https://dlhd.pk/stream/stream-1010.php', 'https://dlhd.pk/cast/stream-1010.php', 'https://dlhd.pk/watch/stream-1010.php', 'https://dlhd.pk/plus/stream-1010.php', 'https://dlhd.pk/casting/stream-1010.php', 'https://dlhd.pk/player/stream-1010.php'], false)">bein Sports 5 Turkey</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('beIN SPORTS MAX AR', ['https://dlhd.pk/stream/stream-597.php', 'https://dlhd.pk/cast/stream-597.php', 'https://dlhd.pk/watch/stream-597.php', 'https://dlhd.pk/plus/stream-597.php', 'https://dlhd.pk/casting/stream-597.php', 'https://dlhd.pk/player/stream-597.php'], false)">beIN SPORTS MAX AR</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('beIN Sports MAX 2 Arabia', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'], false)">beIN Sports MAX 2 Arabia</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('beIN Sports 1 MAX Arabic', ['https://dlhd.pk/stream/stream-966.php', 'https://dlhd.pk/cast/stream-966.php', 'https://dlhd.pk/watch/stream-966.php', 'https://dlhd.pk/plus/stream-966.php', 'https://dlhd.pk/casting/stream-966.php', 'https://dlhd.pk/player/stream-966.php'], false)">beIN Sports 1 MAX Arabic</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('beIN Sports 3 MAX Arabic', ['https://dlhd.pk/stream/stream-968.php', 'https://dlhd.pk/cast/stream-968.php', 'https://dlhd.pk/watch/stream-968.php', 'https://dlhd.pk/plus/stream-968.php', 'https://dlhd.pk/casting/stream-968.php', 'https://dlhd.pk/player/stream-968.php'], false)">beIN Sports 3 MAX Arabic</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('beIN Sports 4 MAX Arabic', ['https://dlhd.pk/stream/stream-969.php', 'https://dlhd.pk/cast/stream-969.php', 'https://dlhd.pk/watch/stream-969.php', 'https://dlhd.pk/plus/stream-969.php', 'https://dlhd.pk/casting/stream-969.php', 'https://dlhd.pk/player/stream-969.php'], false)">beIN Sports 4 MAX Arabic</button>
             </div>
         </div>
     </div>
 
-    <!-- DAZN Page -->
+    <!-- DAZN Section -->
     <div id="dazn-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
             <div class="channel-column">
                 <button class="pill-btn color-1" onclick="handleAdClick('DAZN 1 Bar DE', ['https://dlhd.pk/stream/stream-426.php', 'https://dlhd.pk/cast/stream-426.php', 'https://dlhd.pk/watch/stream-426.php', 'https://dlhd.pk/plus/stream-426.php', 'https://dlhd.pk/casting/stream-426.php', 'https://dlhd.pk/player/stream-426.php'], true)">DAZN 1 Bar DE</button>
                 <button class="pill-btn color-2" onclick="handleAdClick('DAZN ES', ['https://dlhd.pk/stream/stream-4000.php', 'https://dlhd.pk/cast/stream-4000.php', 'https://dlhd.pk/watch/stream-4000.php', 'https://dlhd.pk/plus/stream-4000.php', 'https://dlhd.pk/casting/stream-4000.php', 'https://dlhd.pk/player/stream-4000.php'], true)">DAZN ES</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('DAZN 2 Bar DE', ['https://dlhd.pk/stream/stream-427.php', 'https://dlhd.pk/cast/stream-427.php', 'https://dlhd.pk/watch/stream-427.php', 'https://dlhd.pk/plus/stream-427.php', 'https://dlhd.pk/casting/stream-427.php', 'https://dlhd.pk/player/stream-427.php'], true)">DAZN 2 Bar DE</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('DAZN 1 Spain', ['https://dlhd.pk/stream/stream-445.php', 'https://dlhd.pk/cast/stream-445.php', 'https://dlhd.pk/watch/stream-445.php', 'https://dlhd.pk/plus/stream-445.php', 'https://dlhd.pk/casting/stream-445.php', 'https://dlhd.pk/player/stream-445.php'], true)">DAZN 1 Spain</button>
+                <button class="pill-btn color-5" onclick="handleAdClick('DAZN 2 Spain', ['https://dlhd.pk/stream/stream-446.php', 'https://dlhd.pk/cast/stream-446.php', 'https://dlhd.pk/watch/stream-446.php', 'https://dlhd.pk/plus/stream-446.php', 'https://dlhd.pk/casting/stream-446.php', 'https://dlhd.pk/player/stream-446.php'], true)">DAZN 2 Spain</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('DAZN 3 Spain', ['https://dlhd.pk/stream/stream-447.php', 'https://dlhd.pk/cast/stream-447.php', 'https://dlhd.pk/watch/stream-447.php', 'https://dlhd.pk/plus/stream-447.php', 'https://dlhd.pk/casting/stream-447.php', 'https://dlhd.pk/player/stream-447.php'], true)">DAZN 3 Spain</button>
+                <button class="pill-btn color-2" onclick="handleAdClick('DAZN 4 Spain', ['https://dlhd.pk/stream/stream-448.php', 'https://dlhd.pk/cast/stream-448.php', 'https://dlhd.pk/watch/stream-448.php', 'https://dlhd.pk/plus/stream-448.php', 'https://dlhd.pk/casting/stream-448.php', 'https://dlhd.pk/player/stream-448.php'], true)">DAZN 4 Spain</button>
+                <button class="pill-btn color-3" onclick="handleAdClick('DAZN F1 ES', ['https://dlhd.pk/stream/stream-537.php', 'https://dlhd.pk/cast/stream-537.php', 'https://dlhd.pk/watch/stream-537.php', 'https://dlhd.pk/plus/stream-537.php', 'https://dlhd.pk/casting/stream-537.php', 'https://dlhd.pk/player/stream-537.php'], true)">DAZN F1 ES</button>
+                <button class="pill-btn color-4" onclick="handleAdClick('DAZN LaLiga', ['https://dlhd.pk/stream/stream-538.php', 'https://dlhd.pk/cast/stream-538.php', 'https://dlhd.pk/watch/stream-538.php', 'https://dlhd.pk/plus/stream-538.php', 'https://dlhd.pk/casting/stream-538.php', 'https://dlhd.pk/player/stream-538.php'], true)">DAZN LaLiga</button>
                 <button class="pill-btn color-5" onclick="handleAdClick('DAZN Portugal FIFA Mundial de Clubes', ['https://dlhd.pk/stream/stream-918.php', 'https://dlhd.pk/cast/stream-918.php', 'https://dlhd.pk/watch/stream-918.php', 'https://dlhd.pk/plus/stream-918.php', 'https://dlhd.pk/casting/stream-918.php', 'https://dlhd.pk/player/stream-918.php'], true)">DAZN Portugal FIFA Mundial de Clubes</button>
                 <button class="pill-btn color-2" onclick="handleAdClick('DAZN ZONA Italy', ['https://dlhd.pk/stream/stream-877.php', 'https://dlhd.pk/cast/stream-877.php', 'https://dlhd.pk/watch/stream-877.php', 'https://dlhd.pk/plus/stream-877.php', 'https://dlhd.pk/casting/stream-877.php', 'https://dlhd.pk/player/stream-877.php'], true)">DAZN ZONA Italy</button>
+                <button class="pill-btn color-1" onclick="handleAdClick('DAZN Ligue 1 France', ['https://dlhd.pk/stream/stream-960.php', 'https://dlhd.pk/cast/stream-960.php', 'https://dlhd.pk/watch/stream-960.php', 'https://dlhd.pk/plus/stream-960.php', 'https://dlhd.pk/casting/stream-960.php', 'https://dlhd.pk/player/stream-960.php'], true)">DAZN Ligue 1 France</button>
             </div>
+            
             <div class="center-area">
                 <div id="player-container-dazn" class="player-container">
                     <h2 id="selected-channel-name-dazn" class="channel-name">Select a Channel</h2>
@@ -100,29 +125,15 @@
     </div>
 
     <script>
-        // Ad Rotation Logic
         let adIndex = 0;
-        const adLinks = [
-            "https://omg10.com/4/11175198",
-            "https://omg10.com/4/11175191"
-        ];
+        const adLinks = ["https://omg10.com/4/11175198", "https://omg10.com/4/11175191"];
 
         function handleAdClick(name, links, isDazn) {
-            // 1. Trigger the Ad (One for you)
             window.open(adLinks[adIndex], '_blank');
-
-            // Rotate to next ad for next click
             adIndex = (adIndex + 1) % adLinks.length;
-
-            // 2. Trigger the video (One for me)
-            if (isDazn) {
-                loadChannelDazn(name, links);
-            } else {
-                loadChannel(name, links);
-            }
+            if (isDazn) { loadChannelDazn(name, links); } else { loadChannel(name, links); }
         }
 
-        // Standard Functions
         function showSection(sectionId) { document.getElementById('main-menu').style.display = 'none'; document.getElementById(sectionId).style.display = 'block'; }
         function goHome() { document.getElementById('main-menu').style.display = 'flex'; document.getElementById('bein-section').style.display = 'none'; document.getElementById('dazn-section').style.display = 'none'; }
 
