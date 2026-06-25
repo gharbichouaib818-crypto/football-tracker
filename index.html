@@ -1,105 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live TV Hub</title>
-    
-    <script async src="https://monetag.com/your-code-here.js"></script>
-
     <style>
-        body { background: url('balla.jpg') fixed center/cover; margin: 0; color: #fff; font-family: sans-serif; }
-        .network-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        .network-card { background: rgba(0,0,0,0.8); padding: 10px; border-radius: 8px; cursor: pointer; text-align: center; border: 1px solid #444; }
-        .network-card:hover { transform: scale(1.05); border: 1px solid #fff; }
-        
-        #player-wrapper { width: 85%; margin: 40px auto; text-align: center; }
-        iframe { width: 100%; height: 500px; background: #000; border: none; border-radius: 10px; }
-        
-        .server-container { margin-top: 20px; background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; }
-        .server-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-        .s-btn { background: #333; color: white; padding: 10px 20px; border: 1px solid #555; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .s-btn:hover { background: #007bff; border-color: #007bff; }
+        .category-card {
+            width: 200px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            border: 2px solid #333;
+        }
+        .category-card img { width: 100%; }
+        .category-card:hover { border-color: #007bff; }
     </style>
 </head>
 <body>
 
-    <h1 style="text-align: center; padding-top: 20px;">Network Selection</h1>
-    <main class="network-grid" id="main-content"></main>
-
-    <div id="player-wrapper">
-        <iframe id="video-frame" src="" allowfullscreen></iframe>
-        <div class="server-container">
-            <h3 id="current-channel-name">Select a channel</h3>
-            <div class="server-btns" id="server-selector"></div>
-        </div>
-    </div>
-
-    <div style="position: fixed; bottom: 0; width: 100%; z-index: 99999; text-align: center;">
-      <iframe data-aa=2445577 src=//acceptable.a-ads.com/2445577/?size=Adaptive style='border:0; padding:0; width:70%; height:auto; overflow:hidden;'></iframe>
+    <div class="category-card" onclick="showBeinChannels()">
+        <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
+        <p>BeIN Sports</p>
     </div>
 
     <script>
-        // Mapping all channels from your channels.txt
-        const tvData = {
+        // All your BeIN channels organized with their IDs
+        const beinChannels = {
+            "Bein Arabic 4K": { id: 5013 },
             "beIN Sports 1 Arabic": { id: 91 },
             "beIN Sports 2 Arabic": { id: 92 },
             "beIN Sports 3 Arabic": { id: 93 },
             "beIN Sports 4 Arabic": { id: 94 },
             "beIN Sports 5 Arabic": { id: 95 },
             "beIN Sports 6 Arabic": { id: 96 },
+            "beIN Sports 7 Arabic": { id: 97 },
+            "beIN Sports 8 Arabic": { id: 98 },
+            "beIN Sports 9 Arabic": { id: 99 },
+            "beIN SPORTS XTRA 1": { id: 100 },
             "beIN Sports MENA English 1": { id: 61 },
             "beIN Sports MENA English 2": { id: 90 },
-            "beIN Sports USA": { id: 425 },
-            "Fox Sports 1 USA": { id: 39 },
-            "Fox Sports 2 USA": { id: 758 },
-            "Fox Soccer Plus": { id: 756 },
-            "Fox Cricket": { id: 369 },
-            "DAZN 1 Bar DE": { id: 426 },
-            "DAZN 2 Bar DE": { id: 427 },
-            "DAZN 1 Spain": { id: 445 },
-            "DAZN 2 Spain": { id: 446 }
+            "beIN Sports MAX 4 France": { id: 494 },
+            "beIN Sports MAX 5 France": { id: 495 },
+            "beIN Sports MAX 6 France": { id: 496 },
+            "beIN Sports MAX 7 France": { id: 497 },
+            "beIN Sports MAX 8 France": { id: 498 },
+            "beIN Sports MAX 9 France": { id: 499 },
+            "beIN Sports MAX 10 France": { id: 500 },
+            "beIN SPORTS 1 France": { id: 116 },
+            "beIN SPORTS 2 France": { id: 117 },
+            "beIN SPORTS 3 France": { id: 118 },
+            "beIN SPORTS 1 Turkey": { id: 62 },
+            "beIN SPORTS 2 Turkey": { id: 63 },
+            "beIN SPORTS 3 Turkey": { id: 64 },
+            "beIN SPORTS 4 Turkey": { id: 67 },
+            "BeIN Sports HD Qatar": { id: 578 },
+            "BeIN SPORTS USA": { id: 425 },
+            "beIN SPORTS en Español": { id: 372 },
+            "beIN SPORTS Australia 1": { id: 491 },
+            "beIN SPORTS Australia 2": { id: 492 },
+            "beIN SPORTS Australia 3": { id: 493 },
+            "beIN Sports 1 Malaysia": { id: 712 },
+            "beIN Sports 2 Malaysia": { id: 713 },
+            "beIN Sports 3 Malaysia": { id: 714 },
+            "bein Sports 5 Turkey": { id: 1010 },
+            "beIN SPORTS MAX AR": { id: 597 },
+            "beIN Sports MAX 2 Arabia": { id: 967 },
+            "beIN Sports 1 MAX Arabic": { id: 966 },
+            "beIN Sports 3 MAX Arabic": { id: 968 },
+            "beIN Sports 4 MAX Arabic": { id: 969 }
         };
 
-        const serverMap = {
-            1: "stream/stream-",
-            2: "cast/stream-",
-            3: "watch/stream-",
-            4: "plus/stream-",
-            5: "casting/stream-",
-            6: "player/stream-"
-        };
-
-        const container = document.getElementById('main-content');
-        const frame = document.getElementById('video-frame');
-        const channelTitle = document.getElementById('current-channel-name');
-        const serverSelector = document.getElementById('server-selector');
-
-        // Create cards dynamically
-        for (const name in tvData) {
-            const div = document.createElement('div');
-            div.className = 'network-card';
-            div.innerText = name;
-            div.onclick = () => loadChannel(name);
-            container.appendChild(div);
-        }
-
-        function loadChannel(name) {
-            const channelId = tvData[name].id;
-            channelTitle.innerText = `Servers for: ${name}`;
-            serverSelector.innerHTML = ''; 
-
-            for (let i = 1; i <= 6; i++) {
-                const btn = document.createElement('button');
-                btn.className = 's-btn';
-                btn.innerText = 'Server ' + i;
-                btn.onclick = () => {
-                    frame.src = `https://dlhd.pk/${serverMap[i]}${channelId}.php`;
-                };
-                serverSelector.appendChild(btn);
-            }
-            // Default to Server 1
-            frame.src = `https://dlhd.pk/${serverMap[1]}${channelId}.php`;
+        function showBeinChannels() {
+            console.log("BeIN Section Clicked. Ready to load channels.");
+            // We will build the list rendering in the next step
         }
     </script>
 </body>
