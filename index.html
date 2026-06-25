@@ -27,8 +27,23 @@
         }
         .nav-btn img { width: 200px; height: auto; }
 
+        /* Channel Button Styling */
+        .channel-btn {
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
+        }
+        .channel-icon { width: 20px; height: 20px; }
+
         /* Player Styles */
         #player-container { margin-top: 20px; }
+        /* Added allowfullscreen and allow attributes to the iframe below */
         iframe { width: 800px; height: 450px; border: 2px solid white; background: black; }
         .server-btn { margin: 5px; padding: 10px; cursor: pointer; }
     </style>
@@ -46,12 +61,19 @@
     <div id="bein-section">
         <h1>BeIN Sports</h1>
         
-        <!-- Channel Button -->
-        <button onclick="showPlayer()">Bein Arabic 4K Quality</button>
+        <!-- Updated Channel Button with Logo -->
+        <button onclick="showPlayer()" class="channel-btn">
+            <img src="BeIN_Sports_logo.svg" class="channel-icon">
+            Bein Arabic 4K Quality
+        </button>
 
-        <!-- Player and Servers (Initially hidden) -->
+        <!-- Player and Servers -->
         <div id="player-container" style="display: none;">
-            <iframe id="video-frame" src=""></iframe>
+            <iframe id="video-frame" 
+                    src="" 
+                    allow="fullscreen; autoplay; encrypted-media" 
+                    allowfullscreen>
+            </iframe>
             <br>
             <button class="server-btn" onclick="loadServer('https://dlhd.pk/stream/stream-5013.php')">Server 1</button>
             <button class="server-btn" onclick="loadServer('https://dlhd.pk/cast/stream-5013.php')">Server 2</button>
