@@ -28,6 +28,7 @@
         .nav-btn img { width: 200px; height: auto; }
 
         /* Channel Button Styling */
+        .channel-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
         .channel-btn {
             background: #333;
             color: white;
@@ -38,12 +39,12 @@
             align-items: center;
             gap: 10px;
             margin: 0 auto;
+            width: 300px;
         }
         .channel-icon { width: 20px; height: 20px; }
 
         /* Player Styles */
         #player-container { margin-top: 20px; }
-        /* Added allowfullscreen and allow attributes to the iframe below */
         iframe { width: 800px; height: 450px; border: 2px solid white; background: black; }
         .server-btn { margin: 5px; padding: 10px; cursor: pointer; }
     </style>
@@ -61,26 +62,31 @@
     <div id="bein-section">
         <h1>BeIN Sports</h1>
         
-        <!-- Updated Channel Button with Logo -->
-        <button onclick="showPlayer()" class="channel-btn">
-            <img src="BeIN_Sports_logo.svg" class="channel-icon">
-            Bein Arabic 4K Quality
-        </button>
+        <div class="channel-list">
+            <!-- Channel 1 -->
+            <button onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-5013.php', 'https://dlhd.pk/cast/stream-5013.php', 'https://dlhd.pk/watch/stream-5013.php', 'https://dlhd.pk/plus/stream-5013.php', 'https://dlhd.pk/casting/stream-5013.php', 'https://dlhd.pk/player/stream-5013.php'])" class="channel-btn">
+                <img src="BeIN_Sports_logo.svg" class="channel-icon">
+                Bein Arabic 4K Quality
+            </button>
+
+            <!-- Channel 2 -->
+            <button onclick="loadChannel('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'])" class="channel-btn">
+                <img src="BeIN_Sports_logo.svg" class="channel-icon">
+                beIN Sports 1 Arabic
+            </button>
+        </div>
 
         <!-- Player and Servers -->
         <div id="player-container" style="display: none;">
+            <h2 id="selected-channel-name"></h2>
             <iframe id="video-frame" 
                     src="" 
                     allow="fullscreen; autoplay; encrypted-media" 
                     allowfullscreen>
             </iframe>
-            <br>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/stream/stream-597.php')">Server 1</button>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/cast/stream-597.php')">Server 2</button>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/watch/stream-597.php')">Server 3</button>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/plus/stream-597.php')">Server 4</button>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/casting/stream-597.php')">Server 5</button>
-            <button class="server-btn" onclick="loadServer('https://dlhd.pk/player/stream-597.php')">Server 6</button>
+            <div id="server-buttons">
+                <!-- Buttons will be updated by JS -->
+            </div>
         </div>
     </div>
 
@@ -90,12 +96,24 @@
             document.getElementById('bein-section').style.display = 'block';
         }
 
-        function showPlayer() {
+        function loadChannel(name, links) {
+            document.getElementById('selected-channel-name').innerText = name;
             document.getElementById('player-container').style.display = 'block';
-        }
-
-        function loadServer(link) {
-            document.getElementById('video-frame').src = link;
+            
+            // Auto play Server 1
+            document.getElementById('video-frame').src = links[0];
+            
+            // Update server buttons
+            const serverContainer = document.getElementById('server-buttons');
+            serverContainer.innerHTML = ''; // Clear old buttons
+            
+            links.forEach((link, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'server-btn';
+                btn.innerText = 'Server ' + (index + 1);
+                btn.onclick = () => { document.getElementById('video-frame').src = link; };
+                serverContainer.appendChild(btn);
+            });
         }
     </script>
 </body>
