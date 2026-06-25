@@ -20,7 +20,7 @@
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            gap: 30px; /* Space between buttons */
+            gap: 30px; 
             height: 100vh; 
         }
         
@@ -39,9 +39,23 @@
         .nav-btn img { width: 200px; height: auto; }
 
         /* General Section Styling */
-        .page-section { display: none; padding: 40px 20px; }
+        .page-section { display: none; padding: 20px; }
 
-        /* BeIN Sports New Layout Section */
+        /* Back Button Style */
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .back-btn:hover { background: rgba(255, 255, 255, 0.4); }
+
+        /* Layout Structure */
         .main-layout {
             display: flex;
             justify-content: center;
@@ -55,7 +69,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
             width: 260px;
             padding: 10px;
@@ -108,9 +122,6 @@
             font-weight: bold; cursor: pointer; transition: background 0.2s;
         }
         .server-btn:hover { background: #e0e0e0; }
-
-        /* Empty DAZN Page styling */
-        #dazn-section { text-align: center; color: white; margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -127,8 +138,8 @@
 
     <!-- BeIN Sports Page -->
     <div id="bein-section" class="page-section">
+        <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
-            <!-- Left Column: Channels 1-21 -->
             <div class="channel-column">
                 <button class="pill-btn color-1" onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])">Bein Arabic 4K Quality</button>
                 <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'])">beIN Sports 1 Arabic</button>
@@ -153,7 +164,6 @@
                 <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'])">beIN Sports 1 France</button>
             </div>
 
-            <!-- Center Column -->
             <div class="center-area">
                 <div id="player-container">
                     <h2 id="selected-channel-name">Select a Channel</h2>
@@ -162,7 +172,6 @@
                 </div>
             </div>
 
-            <!-- Right Column -->
             <div class="channel-column">
                 <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'])">beIN Sports 2 France</button>
                 <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'])">beIN Sports 3 France</button>
@@ -189,16 +198,48 @@
         </div>
     </div>
 
-    <!-- Empty DAZN Page -->
+    <!-- DAZN Page -->
     <div id="dazn-section" class="page-section">
-        <h1>DAZN Channels</h1>
+        <button class="back-btn" onclick="goHome()">← Back to Home</button>
+        <div class="main-layout">
+            <div class="channel-column">
+                <button class="pill-btn color-1" onclick="loadChannel('DAZN 1 Bar DE', ['https://dlhd.pk/stream/stream-426.php', 'https://dlhd.pk/cast/stream-426.php', 'https://dlhd.pk/watch/stream-426.php', 'https://dlhd.pk/plus/stream-426.php', 'https://dlhd.pk/casting/stream-426.php', 'https://dlhd.pk/player/stream-426.php'])">DAZN 1 Bar DE</button>
+                <button class="pill-btn color-2" onclick="loadChannel('DAZN ES', ['https://dlhd.pk/stream/stream-4000.php', 'https://dlhd.pk/cast/stream-4000.php', 'https://dlhd.pk/watch/stream-4000.php', 'https://dlhd.pk/plus/stream-4000.php', 'https://dlhd.pk/casting/stream-4000.php', 'https://dlhd.pk/player/stream-4000.php'])">DAZN ES</button>
+                <button class="pill-btn color-3" onclick="loadChannel('DAZN 2 Bar DE', ['https://dlhd.pk/stream/stream-427.php', 'https://dlhd.pk/cast/stream-427.php', 'https://dlhd.pk/watch/stream-427.php', 'https://dlhd.pk/plus/stream-427.php', 'https://dlhd.pk/casting/stream-427.php', 'https://dlhd.pk/player/stream-427.php'])">DAZN 2 Bar DE</button>
+                <button class="pill-btn color-4" onclick="loadChannel('DAZN 1 Spain', ['https://dlhd.pk/stream/stream-445.php', 'https://dlhd.pk/cast/stream-445.php', 'https://dlhd.pk/watch/stream-445.php', 'https://dlhd.pk/plus/stream-445.php', 'https://dlhd.pk/casting/stream-445.php', 'https://dlhd.pk/player/stream-445.php'])">DAZN 1 Spain</button>
+                <button class="pill-btn color-5" onclick="loadChannel('DAZN 2 Spain', ['https://dlhd.pk/stream/stream-446.php', 'https://dlhd.pk/cast/stream-446.php', 'https://dlhd.pk/watch/stream-446.php', 'https://dlhd.pk/plus/stream-446.php', 'https://dlhd.pk/casting/stream-446.php', 'https://dlhd.pk/player/stream-446.php'])">DAZN 2 Spain</button>
+                <button class="pill-btn color-1" onclick="loadChannel('DAZN 3 Spain', ['https://dlhd.pk/stream/stream-447.php', 'https://dlhd.pk/cast/stream-447.php', 'https://dlhd.pk/watch/stream-447.php', 'https://dlhd.pk/plus/stream-447.php', 'https://dlhd.pk/casting/stream-447.php', 'https://dlhd.pk/player/stream-447.php'])">DAZN 3 Spain</button>
+            </div>
+
+            <div class="center-area">
+                <div id="player-container">
+                    <h2 id="selected-channel-name">Select a Channel</h2>
+                    <iframe id="video-frame" src="" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div id="server-buttons"></div>
+                </div>
+            </div>
+
+            <div class="channel-column">
+                <button class="pill-btn color-2" onclick="loadChannel('DAZN 4 Spain', ['https://dlhd.pk/stream/stream-448.php', 'https://dlhd.pk/cast/stream-448.php', 'https://dlhd.pk/watch/stream-448.php', 'https://dlhd.pk/plus/stream-448.php', 'https://dlhd.pk/casting/stream-448.php', 'https://dlhd.pk/player/stream-448.php'])">DAZN 4 Spain</button>
+                <button class="pill-btn color-3" onclick="loadChannel('DAZN F1 ES', ['https://dlhd.pk/stream/stream-537.php', 'https://dlhd.pk/cast/stream-537.php', 'https://dlhd.pk/watch/stream-537.php', 'https://dlhd.pk/plus/stream-537.php', 'https://dlhd.pk/casting/stream-537.php', 'https://dlhd.pk/player/stream-537.php'])">DAZN F1 ES</button>
+                <button class="pill-btn color-4" onclick="loadChannel('DAZN LaLiga', ['https://dlhd.pk/stream/stream-538.php', 'https://dlhd.pk/cast/stream-538.php', 'https://dlhd.pk/watch/stream-538.php', 'https://dlhd.pk/plus/stream-538.php', 'https://dlhd.pk/casting/stream-538.php', 'https://dlhd.pk/player/stream-538.php'])">DAZN LaLiga</button>
+                <button class="pill-btn color-5" onclick="loadChannel('DAZN Portugal FIFA', ['https://dlhd.pk/stream/stream-918.php', 'https://dlhd.pk/cast/stream-918.php', 'https://dlhd.pk/watch/stream-918.php', 'https://dlhd.pk/plus/stream-918.php', 'https://dlhd.pk/casting/stream-918.php', 'https://dlhd.pk/player/stream-918.php'])">DAZN Portugal FIFA</button>
+                <button class="pill-btn color-1" onclick="loadChannel('DAZN Ligue 1 France', ['https://dlhd.pk/stream/stream-960.php', 'https://dlhd.pk/cast/stream-960.php', 'https://dlhd.pk/watch/stream-960.php', 'https://dlhd.pk/plus/stream-960.php', 'https://dlhd.pk/casting/stream-960.php', 'https://dlhd.pk/player/stream-960.php'])">DAZN Ligue 1 France</button>
+                <button class="pill-btn color-2" onclick="loadChannel('DAZN ZONA Italy', ['https://dlhd.pk/stream/stream-877.php', 'https://dlhd.pk/cast/stream-877.php', 'https://dlhd.pk/watch/stream-877.php', 'https://dlhd.pk/plus/stream-877.php', 'https://dlhd.pk/casting/stream-877.php', 'https://dlhd.pk/player/stream-877.php'])">DAZN ZONA Italy</button>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Universal navigation function
         function showSection(sectionId) {
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function goHome() {
+            document.getElementById('main-menu').style.display = 'flex';
+            document.getElementById('bein-section').style.display = 'none';
+            document.getElementById('dazn-section').style.display = 'none';
         }
 
         function loadChannel(name, links) {
