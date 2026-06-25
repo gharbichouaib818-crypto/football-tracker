@@ -1,133 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>BeIN Sports Player</title>
     <style>
-        body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #121212; color: white; }
-        #main-menu { display: flex; justify-content: center; padding-top: 50px; }
-        #channel-menu { display: none; }
-        
-        .category-card { width: 200px; padding: 20px; background: #1a1a1a; border-radius: 10px; cursor: pointer; text-align: center; border: 2px solid #333; transition: 0.3s; }
-        .category-card:hover { border-color: #007bff; transform: scale(1.05); }
-        .category-card img { width: 100%; height: auto; }
-
-        .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 20px; }
-        .channel-item { background: #222; padding: 10px; border-radius: 5px; cursor: pointer; text-align: center; border: 1px solid #444; }
-        .channel-item:hover { background: #007bff; color: white; }
-
-        #player-section { margin-top: 30px; text-align: center; }
-        /* Added sandbox and allow attributes for better compatibility */
-        iframe { width: 100%; max-width: 800px; height: 450px; background: #000; border: none; }
-        .server-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .s-btn { background: #444; padding: 10px 20px; border: none; color: white; cursor: pointer; border-radius: 4px; transition: 0.2s; }
-        .s-btn:hover { background: #007bff; }
+        body {
+            background-image: url('balla.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #main-menu { display: block; }
+        #bein-section { display: none; color: white; text-align: center; }
+        .nav-btn { background: none; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <!-- Main View -->
     <div id="main-menu">
-        <div class="category-card" onclick="showChannels()">
-            <p>BeIN Sports</p>
-        </div>
+        <button class="nav-btn" onclick="showBeinPage()">
+            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports Button">
+        </button>
     </div>
 
-    <!-- Channel View -->
-    <div id="channel-menu">
-        <button onclick="location.reload()" style="padding: 10px; cursor: pointer; margin-bottom: 10px;">← Back to Home</button>
-        <div id="player-section">
-            <h2 id="current-title">Select a Channel</h2>
-            <iframe id="video-frame" 
-                    src="" 
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
-                    allowfullscreen>
-            </iframe>
-            <div class="server-btns" id="server-selector"></div>
-        </div>
-        <div class="channel-grid" id="channel-list"></div>
+    <!-- BeIN Sports Page (Empty) -->
+    <div id="bein-section">
+        <h1>BeIN Sports</h1>
     </div>
 
     <script>
-        const beinChannels = [
-            { name: "Bein Arabic 4K", servers: ["https://dlhd.pk/stream/stream-5013.php", "https://dlhd.pk/cast/stream-5013.php", "https://dlhd.pk/watch/stream-5013.php", "https://dlhd.pk/plus/stream-5013.php", "https://dlhd.pk/casting/stream-5013.php", "https://dlhd.pk/player/stream-5013.php"] },
-            { name: "beIN Sports 1 Arabic", servers: ["https://dlhd.pk/stream/stream-91.php", "https://dlhd.pk/cast/stream-91.php", "https://dlhd.pk/watch/stream-91.php", "https://dlhd.pk/plus/stream-91.php", "https://dlhd.pk/casting/stream-91.php", "https://dlhd.pk/player/stream-91.php"] },
-            { name: "beIN Sports 2 Arabic", servers: ["https://dlhd.pk/stream/stream-92.php", "https://dlhd.pk/cast/stream-92.php", "https://dlhd.pk/watch/stream-92.php", "https://dlhd.pk/plus/stream-92.php", "https://dlhd.pk/casting/stream-92.php", "https://dlhd.pk/player/stream-92.php"] },
-            { name: "beIN Sports 3 Arabic", servers: ["https://dlhd.pk/stream/stream-93.php", "https://dlhd.pk/cast/stream-93.php", "https://dlhd.pk/watch/stream-93.php", "https://dlhd.pk/plus/stream-93.php", "https://dlhd.pk/casting/stream-93.php", "https://dlhd.pk/player/stream-93.php"] },
-            { name: "beIN Sports 4 Arabic", servers: ["https://dlhd.pk/stream/stream-94.php", "https://dlhd.pk/cast/stream-94.php", "https://dlhd.pk/watch/stream-94.php", "https://dlhd.pk/plus/stream-94.php", "https://dlhd.pk/casting/stream-94.php", "https://dlhd.pk/player/stream-94.php"] },
-            { name: "beIN Sports 5 Arabic", servers: ["https://dlhd.pk/stream/stream-95.php", "https://dlhd.pk/cast/stream-95.php", "https://dlhd.pk/watch/stream-95.php", "https://dlhd.pk/plus/stream-95.php", "https://dlhd.pk/casting/stream-95.php", "https://dlhd.pk/player/stream-95.php"] },
-            { name: "beIN Sports 6 Arabic", servers: ["https://dlhd.pk/stream/stream-96.php", "https://dlhd.pk/cast/stream-96.php", "https://dlhd.pk/watch/stream-96.php", "https://dlhd.pk/plus/stream-96.php", "https://dlhd.pk/casting/stream-96.php", "https://dlhd.pk/player/stream-96.php"] },
-            { name: "beIN Sports 7 Arabic", servers: ["https://dlhd.pk/stream/stream-97.php", "https://dlhd.pk/cast/stream-97.php", "https://dlhd.pk/watch/stream-97.php", "https://dlhd.pk/plus/stream-97.php", "https://dlhd.pk/casting/stream-97.php", "https://dlhd.pk/player/stream-97.php"] },
-            { name: "beIN Sports 8 Arabic", servers: ["https://dlhd.pk/stream/stream-98.php", "https://dlhd.pk/cast/stream-98.php", "https://dlhd.pk/watch/stream-98.php", "https://dlhd.pk/plus/stream-98.php", "https://dlhd.pk/casting/stream-98.php", "https://dlhd.pk/player/stream-98.php"] },
-            { name: "beIN Sports 9 Arabic", servers: ["https://dlhd.pk/stream/stream-99.php", "https://dlhd.pk/cast/stream-99.php", "https://dlhd.pk/watch/stream-99.php", "https://dlhd.pk/plus/stream-99.php", "https://dlhd.pk/casting/stream-99.php", "https://dlhd.pk/player/stream-99.php"] },
-            { name: "beIN SPORTS XTRA 1", servers: ["https://dlhd.pk/stream/stream-100.php", "https://dlhd.pk/cast/stream-100.php", "https://dlhd.pk/watch/stream-100.php", "https://dlhd.pk/plus/stream-100.php", "https://dlhd.pk/casting/stream-100.php", "https://dlhd.pk/player/stream-100.php"] },
-            { name: "beIN Sports MENA English 1", servers: ["https://dlhd.pk/stream/stream-61.php", "https://dlhd.pk/cast/stream-61.php", "https://dlhd.pk/watch/stream-61.php", "https://dlhd.pk/plus/stream-61.php", "https://dlhd.pk/casting/stream-61.php", "https://dlhd.pk/player/stream-61.php"] },
-            { name: "beIN Sports MENA English 2", servers: ["https://dlhd.pk/stream/stream-90.php", "https://dlhd.pk/cast/stream-90.php", "https://dlhd.pk/watch/stream-90.php", "https://dlhd.pk/plus/stream-90.php", "https://dlhd.pk/casting/stream-90.php", "https://dlhd.pk/player/stream-90.php"] },
-            { name: "beIN Sports MAX 4 France", servers: ["https://dlhd.pk/stream/stream-494.php", "https://dlhd.pk/cast/stream-494.php", "https://dlhd.pk/watch/stream-494.php", "https://dlhd.pk/plus/stream-494.php", "https://dlhd.pk/casting/stream-494.php", "https://dlhd.pk/player/stream-494.php"] },
-            { name: "beIN Sports MAX 5 France", servers: ["https://dlhd.pk/stream/stream-495.php", "https://dlhd.pk/cast/stream-495.php", "https://dlhd.pk/watch/stream-495.php", "https://dlhd.pk/plus/stream-495.php", "https://dlhd.pk/casting/stream-495.php", "https://dlhd.pk/player/stream-495.php"] },
-            { name: "beIN Sports MAX 6 France", servers: ["https://dlhd.pk/stream/stream-496.php", "https://dlhd.pk/cast/stream-496.php", "https://dlhd.pk/watch/stream-496.php", "https://dlhd.pk/plus/stream-496.php", "https://dlhd.pk/casting/stream-496.php", "https://dlhd.pk/player/stream-496.php"] },
-            { name: "beIN Sports MAX 7 France", servers: ["https://dlhd.pk/stream/stream-497.php", "https://dlhd.pk/cast/stream-497.php", "https://dlhd.pk/watch/stream-497.php", "https://dlhd.pk/plus/stream-497.php", "https://dlhd.pk/casting/stream-497.php", "https://dlhd.pk/player/stream-497.php"] },
-            { name: "beIN Sports MAX 8 France", servers: ["https://dlhd.pk/stream/stream-498.php", "https://dlhd.pk/cast/stream-498.php", "https://dlhd.pk/watch/stream-498.php", "https://dlhd.pk/plus/stream-498.php", "https://dlhd.pk/casting/stream-498.php", "https://dlhd.pk/player/stream-498.php"] },
-            { name: "beIN Sports MAX 9 France", servers: ["https://dlhd.pk/stream/stream-499.php", "https://dlhd.pk/cast/stream-499.php", "https://dlhd.pk/watch/stream-499.php", "https://dlhd.pk/plus/stream-499.php", "https://dlhd.pk/casting/stream-499.php", "https://dlhd.pk/player/stream-499.php"] },
-            { name: "beIN Sports MAX 10 France", servers: ["https://dlhd.pk/stream/stream-500.php", "https://dlhd.pk/cast/stream-500.php", "https://dlhd.pk/watch/stream-500.php", "https://dlhd.pk/plus/stream-500.php", "https://dlhd.pk/casting/stream-500.php", "https://dlhd.pk/player/stream-500.php"] },
-            { name: "beIN SPORTS 1 France", servers: ["https://dlhd.pk/stream/stream-116.php", "https://dlhd.pk/cast/stream-116.php", "https://dlhd.pk/watch/stream-116.php", "https://dlhd.pk/plus/stream-116.php", "https://dlhd.pk/casting/stream-116.php", "https://dlhd.pk/player/stream-116.php"] },
-            { name: "beIN SPORTS 2 France", servers: ["https://dlhd.pk/stream/stream-117.php", "https://dlhd.pk/cast/stream-117.php", "https://dlhd.pk/watch/stream-117.php", "https://dlhd.pk/plus/stream-117.php", "https://dlhd.pk/casting/stream-117.php", "https://dlhd.pk/player/stream-117.php"] },
-            { name: "beIN SPORTS 3 France", servers: ["https://dlhd.pk/stream/stream-118.php", "https://dlhd.pk/cast/stream-118.php", "https://dlhd.pk/watch/stream-118.php", "https://dlhd.pk/plus/stream-118.php", "https://dlhd.pk/casting/stream-118.php", "https://dlhd.pk/player/stream-118.php"] },
-            { name: "beIN SPORTS 1 Turkey", servers: ["https://dlhd.pk/stream/stream-62.php", "https://dlhd.pk/cast/stream-62.php", "https://dlhd.pk/watch/stream-62.php", "https://dlhd.pk/plus/stream-62.php", "https://dlhd.pk/casting/stream-62.php", "https://dlhd.pk/player/stream-62.php"] },
-            { name: "beIN SPORTS 2 Turkey", servers: ["https://dlhd.pk/stream/stream-63.php", "https://dlhd.pk/cast/stream-63.php", "https://dlhd.pk/watch/stream-63.php", "https://dlhd.pk/plus/stream-63.php", "https://dlhd.pk/casting/stream-63.php", "https://dlhd.pk/player/stream-63.php"] },
-            { name: "beIN SPORTS 3 Turkey", servers: ["https://dlhd.pk/stream/stream-64.php", "https://dlhd.pk/cast/stream-64.php", "https://dlhd.pk/watch/stream-64.php", "https://dlhd.pk/plus/stream-64.php", "https://dlhd.pk/casting/stream-64.php", "https://dlhd.pk/player/stream-64.php"] },
-            { name: "beIN SPORTS 4 Turkey", servers: ["https://dlhd.pk/stream/stream-67.php", "https://dlhd.pk/cast/stream-67.php", "https://dlhd.pk/watch/stream-67.php", "https://dlhd.pk/plus/stream-67.php", "https://dlhd.pk/casting/stream-67.php", "https://dlhd.pk/player/stream-67.php"] },
-            { name: "BeIN Sports HD Qatar", servers: ["https://dlhd.pk/stream/stream-578.php", "https://dlhd.pk/cast/stream-578.php", "https://dlhd.pk/watch/stream-578.php", "https://dlhd.pk/plus/stream-578.php", "https://dlhd.pk/casting/stream-578.php", "https://dlhd.pk/player/stream-578.php"] },
-            { name: "BeIN SPORTS USA", servers: ["https://dlhd.pk/stream/stream-425.php", "https://dlhd.pk/cast/stream-425.php", "https://dlhd.pk/watch/stream-425.php", "https://dlhd.pk/plus/stream-425.php", "https://dlhd.pk/casting/stream-425.php", "https://dlhd.pk/player/stream-425.php"] },
-            { name: "beIN SPORTS en Español", servers: ["https://dlhd.pk/stream/stream-372.php", "https://dlhd.pk/cast/stream-372.php", "https://dlhd.pk/watch/stream-372.php", "https://dlhd.pk/plus/stream-372.php", "https://dlhd.pk/casting/stream-372.php", "https://dlhd.pk/player/stream-372.php"] },
-            { name: "beIN SPORTS Australia 1", servers: ["https://dlhd.pk/stream/stream-491.php", "https://dlhd.pk/cast/stream-491.php", "https://dlhd.pk/watch/stream-491.php", "https://dlhd.pk/plus/stream-491.php", "https://dlhd.pk/casting/stream-491.php", "https://dlhd.pk/player/stream-491.php"] },
-            { name: "beIN SPORTS Australia 2", servers: ["https://dlhd.pk/stream/stream-492.php", "https://dlhd.pk/cast/stream-492.php", "https://dlhd.pk/watch/stream-492.php", "https://dlhd.pk/plus/stream-492.php", "https://dlhd.pk/casting/stream-492.php", "https://dlhd.pk/player/stream-492.php"] },
-            { name: "beIN SPORTS Australia 3", servers: ["https://dlhd.pk/stream/stream-493.php", "https://dlhd.pk/cast/stream-493.php", "https://dlhd.pk/watch/stream-493.php", "https://dlhd.pk/plus/stream-493.php", "https://dlhd.pk/casting/stream-493.php", "https://dlhd.pk/player/stream-493.php"] },
-            { name: "beIN Sports 1 Malaysia", servers: ["https://dlhd.pk/stream/stream-712.php", "https://dlhd.pk/cast/stream-712.php", "https://dlhd.pk/watch/stream-712.php", "https://dlhd.pk/plus/stream-712.php", "https://dlhd.pk/casting/stream-712.php", "https://dlhd.pk/player/stream-712.php"] },
-            { name: "beIN Sports 2 Malaysia", servers: ["https://dlhd.pk/stream/stream-713.php", "https://dlhd.pk/cast/stream-713.php", "https://dlhd.pk/watch/stream-713.php", "https://dlhd.pk/plus/stream-713.php", "https://dlhd.pk/casting/stream-713.php", "https://dlhd.pk/player/stream-713.php"] },
-            { name: "beIN Sports 3 Malaysia", servers: ["https://dlhd.pk/stream/stream-714.php", "https://dlhd.pk/cast/stream-714.php", "https://dlhd.pk/watch/stream-714.php", "https://dlhd.pk/plus/stream-714.php", "https://dlhd.pk/casting/stream-714.php", "https://dlhd.pk/player/stream-714.php"] },
-            { name: "bein Sports 5 Turkey", servers: ["https://dlhd.pk/stream/stream-1010.php", "https://dlhd.pk/cast/stream-1010.php", "https://dlhd.pk/watch/stream-1010.php", "https://dlhd.pk/plus/stream-1010.php", "https://dlhd.pk/casting/stream-1010.php", "https://dlhd.pk/player/stream-1010.php"] },
-            { name: "beIN SPORTS MAX AR", servers: ["https://dlhd.pk/stream/stream-597.php", "https://dlhd.pk/cast/stream-597.php", "https://dlhd.pk/watch/stream-597.php", "https://dlhd.pk/plus/stream-597.php", "https://dlhd.pk/casting/stream-597.php", "https://dlhd.pk/player/stream-597.php"] },
-            { name: "beIN Sports MAX 2 Arabia", servers: ["https://dlhd.pk/stream/stream-967.php", "https://dlhd.pk/cast/stream-967.php", "https://dlhd.pk/watch/stream-967.php", "https://dlhd.pk/plus/stream-967.php", "https://dlhd.pk/casting/stream-967.php", "https://dlhd.pk/player/stream-967.php"] },
-            { name: "beIN Sports 1 MAX Arabic", servers: ["https://dlhd.pk/stream/stream-966.php", "https://dlhd.pk/cast/stream-966.php", "https://dlhd.pk/watch/stream-966.php", "https://dlhd.pk/plus/stream-966.php", "https://dlhd.pk/casting/stream-966.php", "https://dlhd.pk/player/stream-966.php"] },
-            { name: "beIN Sports 3 MAX Arabic", servers: ["https://dlhd.pk/stream/stream-968.php", "https://dlhd.pk/cast/stream-968.php", "https://dlhd.pk/watch/stream-968.php", "https://dlhd.pk/plus/stream-968.php", "https://dlhd.pk/casting/stream-968.php", "https://dlhd.pk/player/stream-968.php"] },
-            { name: "beIN Sports 4 MAX Arabic", servers: ["https://dlhd.pk/stream/stream-969.php", "https://dlhd.pk/cast/stream-969.php", "https://dlhd.pk/watch/stream-969.php", "https://dlhd.pk/plus/stream-969.php", "https://dlhd.pk/casting/stream-969.php", "https://dlhd.pk/player/stream-969.php"] }
-        ];
-
-        function showChannels() {
+        function showBeinPage() {
             document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('channel-menu').style.display = 'block';
-            const list = document.getElementById('channel-list');
-            list.innerHTML = ''; // Clear previous if any
-            
-            beinChannels.forEach(ch => {
-                const div = document.createElement('div');
-                div.className = 'channel-item';
-                div.innerText = ch.name;
-                div.onclick = () => loadPlayer(ch);
-                list.appendChild(div);
-            });
-        }
-
-        function loadPlayer(ch) {
-            document.getElementById('current-title').innerText = ch.name;
-            const selector = document.getElementById('server-selector');
-            selector.innerHTML = ''; // Clear previous buttons
-            
-            // Generate 6 buttons based on the array
-            ch.servers.forEach((link, index) => {
-                const btn = document.createElement('button');
-                btn.className = 's-btn';
-                btn.innerText = 'Server ' + (index + 1);
-                btn.onclick = () => {
-                    const frame = document.getElementById('video-frame');
-                    frame.src = link;
-                };
-                selector.appendChild(btn);
-            });
-            
-            // Auto load Server 1
-            document.getElementById('video-frame').src = ch.servers[0];
+            document.getElementById('bein-section').style.display = 'block';
         }
     </script>
 </body>
