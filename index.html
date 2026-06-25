@@ -3,34 +3,27 @@
 <head>
     <style>
         body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #121212; color: white; }
-        
-        /* Layout Containers */
         #main-menu { display: flex; justify-content: center; padding-top: 50px; }
-        #channel-menu { display: none; } /* Hidden until clicked */
+        #channel-menu { display: none; }
         
-        /* Category Button */
-        .category-card {
-            width: 200px; padding: 20px; background: #1a1a1a; border-radius: 10px;
-            cursor: pointer; text-align: center; border: 2px solid #333; transition: 0.3s;
-        }
+        .category-card { width: 200px; padding: 20px; background: #1a1a1a; border-radius: 10px; cursor: pointer; text-align: center; border: 2px solid #333; transition: 0.3s; }
         .category-card:hover { border-color: #007bff; transform: scale(1.05); }
         .category-card img { width: 100%; height: auto; }
 
-        /* Channel Grid */
-        .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 20px; }
         .channel-item { background: #222; padding: 10px; border-radius: 5px; cursor: pointer; text-align: center; border: 1px solid #444; }
-        .channel-item:hover { background: #007bff; }
+        .channel-item:hover { background: #007bff; color: white; }
 
-        /* Player & Server Styles */
         #player-section { margin-top: 30px; text-align: center; }
         iframe { width: 100%; max-width: 800px; height: 450px; background: #000; border: none; }
         .server-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
-        .s-btn { background: #444; padding: 10px 15px; border: none; color: white; cursor: pointer; border-radius: 4px; }
+        .s-btn { background: #444; padding: 10px 20px; border: none; color: white; cursor: pointer; border-radius: 4px; }
         .s-btn:hover { background: #007bff; }
     </style>
 </head>
 <body>
 
+    <!-- Main View -->
     <div id="main-menu">
         <div class="category-card" onclick="showChannels()">
             <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
@@ -38,8 +31,9 @@
         </div>
     </div>
 
+    <!-- Channel View -->
     <div id="channel-menu">
-        <button onclick="location.reload()" style="margin-bottom: 20px;">Back to Categories</button>
+        <button onclick="location.reload()" style="padding: 10px; cursor: pointer;">← Back to Home</button>
         <div id="player-section">
             <h2 id="current-title">Select a Channel</h2>
             <iframe id="video-frame" src=""></iframe>
@@ -94,7 +88,15 @@
             { name: "beIN Sports 4 MAX Arabic", id: 969 }
         ];
 
-        const serverMap = { 1: "stream", 2: "cast", 3: "watch", 4: "plus", 5: "casting", 6: "player" };
+        // The exact paths requested
+        const serverPaths = {
+            1: "stream",
+            2: "cast",
+            3: "watch",
+            4: "plus",
+            5: "casting",
+            6: "player"
+        };
 
         function showChannels() {
             document.getElementById('main-menu').style.display = 'none';
@@ -121,11 +123,12 @@
                 btn.className = 's-btn';
                 btn.innerText = 'Server ' + i;
                 btn.onclick = () => {
-                    document.getElementById('video-frame').src = `https://dlhd.pk/${serverMap[i]}/stream-${ch.id}.php`;
+                    // This generates: https://dlhd.pk/PATH/stream-ID.php
+                    document.getElementById('video-frame').src = `https://dlhd.pk/${serverPaths[i]}/stream-${ch.id}.php`;
                 };
                 selector.appendChild(btn);
             }
-            // Auto load Server 1
+            // Auto load Server 1 by default
             document.getElementById('video-frame').src = `https://dlhd.pk/stream/stream-${ch.id}.php`;
         }
     </script>
