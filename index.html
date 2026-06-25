@@ -12,11 +12,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: sans-serif;
+            color: white;
         }
         #main-menu { display: block; }
-        #bein-section { display: none; color: white; text-align: center; }
+        #bein-section { display: none; text-align: center; }
         
-        /* Updated button styles to ensure visibility */
         .nav-btn { 
             background: rgba(255, 255, 255, 0.2); 
             border: 2px solid white; 
@@ -24,10 +25,12 @@
             cursor: pointer; 
             border-radius: 10px;
         }
-        .nav-btn img {
-            width: 200px; /* Forces the image to be visible */
-            height: auto;
-        }
+        .nav-btn img { width: 200px; height: auto; }
+
+        /* Player Styles */
+        #player-container { margin-top: 20px; }
+        iframe { width: 800px; height: 450px; border: 2px solid white; background: black; }
+        .server-btn { margin: 5px; padding: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -39,15 +42,38 @@
         </button>
     </div>
 
-    <!-- BeIN Sports Page (Empty) -->
+    <!-- BeIN Sports Page -->
     <div id="bein-section">
         <h1>BeIN Sports</h1>
+        
+        <!-- Channel Button -->
+        <button onclick="showPlayer()">Bein Arabic 4K Quality</button>
+
+        <!-- Player and Servers (Initially hidden) -->
+        <div id="player-container" style="display: none;">
+            <iframe id="video-frame" src=""></iframe>
+            <br>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/stream/stream-5013.php')">Server 1</button>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/cast/stream-5013.php')">Server 2</button>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/watch/stream-5013.php')">Server 3</button>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/plus/stream-5013.php')">Server 4</button>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/casting/stream-5013.php')">Server 5</button>
+            <button class="server-btn" onclick="loadServer('https://dlhd.pk/player/stream-5013.php')">Server 6</button>
+        </div>
     </div>
 
     <script>
         function showBeinPage() {
             document.getElementById('main-menu').style.display = 'none';
             document.getElementById('bein-section').style.display = 'block';
+        }
+
+        function showPlayer() {
+            document.getElementById('player-container').style.display = 'block';
+        }
+
+        function loadServer(link) {
+            document.getElementById('video-frame').src = link;
         }
     </script>
 </body>
