@@ -3,55 +3,130 @@
 <head>
     <style>
         body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #121212; color: white; }
-
-        /* The Button Styling */
+        
+        /* Layout Containers */
+        #main-menu { display: flex; justify-content: center; padding-top: 50px; }
+        #channel-menu { display: none; } /* Hidden until clicked */
+        
+        /* Category Button */
         .category-card {
-            width: 200px;
-            padding: 20px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            cursor: pointer; /* This creates the hand cursor */
-            text-align: center;
-            border: 2px solid #333;
-            position: relative; /* Essential for z-index */
-            z-index: 100; /* Puts the button on top of the ads */
-            transition: 0.3s;
+            width: 200px; padding: 20px; background: #1a1a1a; border-radius: 10px;
+            cursor: pointer; text-align: center; border: 2px solid #333; transition: 0.3s;
         }
-
-        .category-card:hover {
-            border-color: #007bff;
-            transform: scale(1.05);
-        }
-
+        .category-card:hover { border-color: #007bff; transform: scale(1.05); }
         .category-card img { width: 100%; height: auto; }
 
-        /* Ad Unit Styling - Pushed to back */
-        .ad-container {
-            position: fixed; 
-            bottom: 0; 
-            width: 100%; 
-            z-index: 1; /* Ads sit behind the buttons */
-            text-align: center;
-        }
+        /* Channel Grid */
+        .channel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .channel-item { background: #222; padding: 10px; border-radius: 5px; cursor: pointer; text-align: center; border: 1px solid #444; }
+        .channel-item:hover { background: #007bff; }
+
+        /* Player & Server Styles */
+        #player-section { margin-top: 30px; text-align: center; }
+        iframe { width: 100%; max-width: 800px; height: 450px; background: #000; border: none; }
+        .server-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .s-btn { background: #444; padding: 10px 15px; border: none; color: white; cursor: pointer; border-radius: 4px; }
+        .s-btn:hover { background: #007bff; }
     </style>
 </head>
 <body>
 
-    <!-- This is your clickable button -->
-    <div class="category-card" onclick="alert('BeIN Section Clicked!')">
-        <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
-        <p>BeIN Sports</p>
+    <div id="main-menu">
+        <div class="category-card" onclick="showChannels()">
+            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
+            <p>BeIN Sports</p>
+        </div>
     </div>
 
-    <!-- Ad Unit -->
-    <div class="ad-container">
-        <iframe data-aa=2445577 src=//acceptable.a-ads.com/2445577/?size=Adaptive style='border:0; padding:0; width:70%; height:auto; overflow:hidden;'></iframe>
+    <div id="channel-menu">
+        <button onclick="location.reload()" style="margin-bottom: 20px;">Back to Categories</button>
+        <div id="player-section">
+            <h2 id="current-title">Select a Channel</h2>
+            <iframe id="video-frame" src=""></iframe>
+            <div class="server-btns" id="server-selector"></div>
+        </div>
+        <div class="channel-grid" id="channel-list"></div>
     </div>
 
     <script>
-        // Placeholder for future logic
-        function showBeinChannels() {
-            console.log("BeIN Section Clicked!");
+        const beinChannels = [
+            { name: "Bein Arabic 4K", id: 5013 },
+            { name: "beIN Sports 1 Arabic", id: 91 },
+            { name: "beIN Sports 2 Arabic", id: 92 },
+            { name: "beIN Sports 3 Arabic", id: 93 },
+            { name: "beIN Sports 4 Arabic", id: 94 },
+            { name: "beIN Sports 5 Arabic", id: 95 },
+            { name: "beIN Sports 6 Arabic", id: 96 },
+            { name: "beIN Sports 7 Arabic", id: 97 },
+            { name: "beIN Sports 8 Arabic", id: 98 },
+            { name: "beIN Sports 9 Arabic", id: 99 },
+            { name: "beIN SPORTS XTRA 1", id: 100 },
+            { name: "beIN Sports MENA English 1", id: 61 },
+            { name: "beIN Sports MENA English 2", id: 90 },
+            { name: "beIN Sports MAX 4 France", id: 494 },
+            { name: "beIN Sports MAX 5 France", id: 495 },
+            { name: "beIN Sports MAX 6 France", id: 496 },
+            { name: "beIN Sports MAX 7 France", id: 497 },
+            { name: "beIN Sports MAX 8 France", id: 498 },
+            { name: "beIN Sports MAX 9 France", id: 499 },
+            { name: "beIN Sports MAX 10 France", id: 500 },
+            { name: "beIN SPORTS 1 France", id: 116 },
+            { name: "beIN SPORTS 2 France", id: 117 },
+            { name: "beIN SPORTS 3 France", id: 118 },
+            { name: "beIN SPORTS 1 Turkey", id: 62 },
+            { name: "beIN SPORTS 2 Turkey", id: 63 },
+            { name: "beIN SPORTS 3 Turkey", id: 64 },
+            { name: "beIN SPORTS 4 Turkey", id: 67 },
+            { name: "BeIN Sports HD Qatar", id: 578 },
+            { name: "BeIN SPORTS USA", id: 425 },
+            { name: "beIN SPORTS en Español", id: 372 },
+            { name: "beIN SPORTS Australia 1", id: 491 },
+            { name: "beIN SPORTS Australia 2", id: 492 },
+            { name: "beIN SPORTS Australia 3", id: 493 },
+            { name: "beIN Sports 1 Malaysia", id: 712 },
+            { name: "beIN Sports 2 Malaysia", id: 713 },
+            { name: "beIN Sports 3 Malaysia", id: 714 },
+            { name: "bein Sports 5 Turkey", id: 1010 },
+            { name: "beIN SPORTS MAX AR", id: 597 },
+            { name: "beIN Sports MAX 2 Arabia", id: 967 },
+            { name: "beIN Sports 1 MAX Arabic", id: 966 },
+            { name: "beIN Sports 3 MAX Arabic", id: 968 },
+            { name: "beIN Sports 4 MAX Arabic", id: 969 }
+        ];
+
+        const serverMap = { 1: "stream", 2: "cast", 3: "watch", 4: "plus", 5: "casting", 6: "player" };
+
+        function showChannels() {
+            document.getElementById('main-menu').style.display = 'none';
+            document.getElementById('channel-menu').style.display = 'block';
+            const list = document.getElementById('channel-list');
+            
+            beinChannels.forEach(ch => {
+                const div = document.createElement('div');
+                div.className = 'channel-item';
+                div.innerText = ch.name;
+                div.onclick = () => loadPlayer(ch);
+                list.appendChild(div);
+            });
+        }
+
+        function loadPlayer(ch) {
+            document.getElementById('current-title').innerText = ch.name;
+            const selector = document.getElementById('server-selector');
+            selector.innerHTML = '';
+            
+            // Generate 6 buttons
+            for (let i = 1; i <= 6; i++) {
+                const btn = document.createElement('button');
+                btn.className = 's-btn';
+                btn.innerText = 'Server ' + i;
+                btn.onclick = () => {
+                    document.getElementById('video-frame').src = `https://dlhd.pk/${serverMap[i]}/stream-${ch.id}.php`;
+                };
+                selector.appendChild(btn);
+            }
+            // Auto load Server 1
+            document.getElementById('video-frame').src = `https://dlhd.pk/stream/stream-${ch.id}.php`;
         }
     </script>
 </body>
