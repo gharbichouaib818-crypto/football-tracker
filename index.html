@@ -2,76 +2,56 @@
 <html lang="en">
 <head>
     <style>
+        body { margin: 0; padding: 20px; font-family: sans-serif; background-color: #121212; color: white; }
+
+        /* The Button Styling */
         .category-card {
             width: 200px;
             padding: 20px;
             background: #1a1a1a;
             border-radius: 10px;
-            cursor: pointer;
+            cursor: pointer; /* This creates the hand cursor */
             text-align: center;
             border: 2px solid #333;
+            position: relative; /* Essential for z-index */
+            z-index: 100; /* Puts the button on top of the ads */
+            transition: 0.3s;
         }
-        .category-card img { width: 100%; }
-        .category-card:hover { border-color: #007bff; }
+
+        .category-card:hover {
+            border-color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .category-card img { width: 100%; height: auto; }
+
+        /* Ad Unit Styling - Pushed to back */
+        .ad-container {
+            position: fixed; 
+            bottom: 0; 
+            width: 100%; 
+            z-index: 1; /* Ads sit behind the buttons */
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="category-card" onclick="showBeinChannels()">
+    <!-- This is your clickable button -->
+    <div class="category-card" onclick="alert('BeIN Section Clicked!')">
         <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
         <p>BeIN Sports</p>
     </div>
 
-    <script>
-        // All your BeIN channels organized with their IDs
-        const beinChannels = {
-            "Bein Arabic 4K": { id: 5013 },
-            "beIN Sports 1 Arabic": { id: 91 },
-            "beIN Sports 2 Arabic": { id: 92 },
-            "beIN Sports 3 Arabic": { id: 93 },
-            "beIN Sports 4 Arabic": { id: 94 },
-            "beIN Sports 5 Arabic": { id: 95 },
-            "beIN Sports 6 Arabic": { id: 96 },
-            "beIN Sports 7 Arabic": { id: 97 },
-            "beIN Sports 8 Arabic": { id: 98 },
-            "beIN Sports 9 Arabic": { id: 99 },
-            "beIN SPORTS XTRA 1": { id: 100 },
-            "beIN Sports MENA English 1": { id: 61 },
-            "beIN Sports MENA English 2": { id: 90 },
-            "beIN Sports MAX 4 France": { id: 494 },
-            "beIN Sports MAX 5 France": { id: 495 },
-            "beIN Sports MAX 6 France": { id: 496 },
-            "beIN Sports MAX 7 France": { id: 497 },
-            "beIN Sports MAX 8 France": { id: 498 },
-            "beIN Sports MAX 9 France": { id: 499 },
-            "beIN Sports MAX 10 France": { id: 500 },
-            "beIN SPORTS 1 France": { id: 116 },
-            "beIN SPORTS 2 France": { id: 117 },
-            "beIN SPORTS 3 France": { id: 118 },
-            "beIN SPORTS 1 Turkey": { id: 62 },
-            "beIN SPORTS 2 Turkey": { id: 63 },
-            "beIN SPORTS 3 Turkey": { id: 64 },
-            "beIN SPORTS 4 Turkey": { id: 67 },
-            "BeIN Sports HD Qatar": { id: 578 },
-            "BeIN SPORTS USA": { id: 425 },
-            "beIN SPORTS en Español": { id: 372 },
-            "beIN SPORTS Australia 1": { id: 491 },
-            "beIN SPORTS Australia 2": { id: 492 },
-            "beIN SPORTS Australia 3": { id: 493 },
-            "beIN Sports 1 Malaysia": { id: 712 },
-            "beIN Sports 2 Malaysia": { id: 713 },
-            "beIN Sports 3 Malaysia": { id: 714 },
-            "bein Sports 5 Turkey": { id: 1010 },
-            "beIN SPORTS MAX AR": { id: 597 },
-            "beIN Sports MAX 2 Arabia": { id: 967 },
-            "beIN Sports 1 MAX Arabic": { id: 966 },
-            "beIN Sports 3 MAX Arabic": { id: 968 },
-            "beIN Sports 4 MAX Arabic": { id: 969 }
-        };
+    <!-- Ad Unit -->
+    <div class="ad-container">
+        <iframe data-aa=2445577 src=//acceptable.a-ads.com/2445577/?size=Adaptive style='border:0; padding:0; width:70%; height:auto; overflow:hidden;'></iframe>
+    </div>
 
+    <script>
+        // Placeholder for future logic
         function showBeinChannels() {
-            console.log("BeIN Section Clicked. Ready to load channels.");
-            // We will build the list rendering in the next step
+            console.log("BeIN Section Clicked!");
         }
     </script>
 </body>
