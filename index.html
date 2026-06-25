@@ -3,349 +3,154 @@
 <head>
     <style>
         body {
-            background-image: url('balla.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Layout */
+        .main-layout {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-family: sans-serif;
-            color: white;
-        }
-        #main-menu { display: block; }
-        #bein-section { display: none; text-align: center; }
-        
-        .nav-btn { 
-            background: rgba(255, 255, 255, 0.2); 
-            border: 2px solid white; 
-            padding: 20px; 
-            cursor: pointer; 
-            border-radius: 10px;
-        }
-        .nav-btn img { width: 200px; height: auto; }
-
-        /* Channel Button Styling */
-        .channel-list { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; max-height: 80vh; overflow-y: auto; padding-right: 10px; }
-        .channel-btn {
-            background: #333;
-            color: white;
-            border: 1px solid #555;
-            padding: 10px 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            width: 300px;
         }
-        .channel-icon { width: 20px; height: 20px; }
 
-        /* Player Styles */
-        #player-container { margin-top: 20px; }
-        iframe { width: 800px; height: 450px; border: 2px solid white; background: black; }
-        .server-btn { margin: 5px; padding: 10px; cursor: pointer; }
+        .channel-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 250px;
+            padding: 10px;
+        }
+
+        /* The Pill Buttons */
+        .pill-btn {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: white;
+        }
+        .pill-btn:hover { transform: scale(1.05); }
+
+        /* Pastel Colors for Pills */
+        .color-1 { background-color: #89cff0; } /* Blue */
+        .color-2 { background-color: #48d1cc; } /* Teal */
+        .color-3 { background-color: #f08080; } /* Pink */
+        .color-4 { background-color: #fca311; } /* Orange */
+        .color-5 { background-color: #77dd77; } /* Green */
+
+        /* Player Area */
+        .center-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 600px;
+        }
+        #player-container { 
+            background: black; 
+            padding: 10px; 
+            border-radius: 15px;
+            text-align: center;
+        }
+        iframe { width: 100%; height: 350px; border: none; border-radius: 10px; }
+        
+        #server-buttons { margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .server-btn { 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            border: 1px solid #333; 
+            background: #fff; 
+            cursor: pointer; 
+        }
     </style>
 </head>
 <body>
 
-    <!-- Main View -->
-    <div id="main-menu">
-        <button class="nav-btn" onclick="showBeinPage()">
-            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
-        </button>
-    </div>
-
-    <!-- BeIN Sports Page -->
-    <div id="bein-section">
-        <h1>BeIN Sports</h1>
-        
-        <div class="channel-list">
-            <!-- Channel 1 -->
-            <button onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                Bein Arabic 4K Quality
-            </button>
-
-            <!-- Channel 2 -->
-            <button onclick="loadChannel('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 1 Arabic
-            </button>
-            
-            <!-- Channel 3 -->
-            <button onclick="loadChannel('beIN Sports 2 Arabic', ['https://dlhd.pk/stream/stream-92.php', 'https://dlhd.pk/cast/stream-92.php', 'https://dlhd.pk/watch/stream-92.php', 'https://dlhd.pk/plus/stream-92.php', 'https://dlhd.pk/casting/stream-92.php', 'https://dlhd.pk/player/stream-92.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 2 Arabic
-            </button>
-
-            <!-- Channel 4 -->
-            <button onclick="loadChannel('beIN Sports 3 Arabic', ['https://dlhd.pk/stream/stream-93.php', 'https://dlhd.pk/cast/stream-93.php', 'https://dlhd.pk/watch/stream-93.php', 'https://dlhd.pk/plus/stream-93.php', 'https://dlhd.pk/casting/stream-93.php', 'https://dlhd.pk/player/stream-93.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 3 Arabic
-            </button>
-
-            <!-- Channel 5 -->
-            <button onclick="loadChannel('beIN Sports 4 Arabic', ['https://dlhd.pk/stream/stream-94.php', 'https://dlhd.pk/cast/stream-94.php', 'https://dlhd.pk/watch/stream-94.php', 'https://dlhd.pk/plus/stream-94.php', 'https://dlhd.pk/casting/stream-94.php', 'https://dlhd.pk/player/stream-94.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 4 Arabic
-            </button>
-
-            <!-- Channel 6 -->
-            <button onclick="loadChannel('beIN Sports 5 Arabic', ['https://dlhd.pk/stream/stream-95.php', 'https://dlhd.pk/cast/stream-95.php', 'https://dlhd.pk/watch/stream-95.php', 'https://dlhd.pk/plus/stream-95.php', 'https://dlhd.pk/casting/stream-95.php', 'https://dlhd.pk/player/stream-95.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 5 Arabic
-            </button>
-
-            <!-- Channel 7 -->
-            <button onclick="loadChannel('beIN Sports 6 Arabic', ['https://dlhd.pk/stream/stream-96.php', 'https://dlhd.pk/cast/stream-96.php', 'https://dlhd.pk/watch/stream-96.php', 'https://dlhd.pk/plus/stream-96.php', 'https://dlhd.pk/casting/stream-96.php', 'https://dlhd.pk/player/stream-96.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 6 Arabic
-            </button>
-
-            <!-- Channel 8 -->
-            <button onclick="loadChannel('beIN Sports 7 Arabic', ['https://dlhd.pk/stream/stream-97.php', 'https://dlhd.pk/cast/stream-97.php', 'https://dlhd.pk/watch/stream-97.php', 'https://dlhd.pk/plus/stream-97.php', 'https://dlhd.pk/casting/stream-97.php', 'https://dlhd.pk/player/stream-97.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 7 Arabic
-            </button>
-
-            <!-- Channel 9 -->
-            <button onclick="loadChannel('beIN Sports 8 Arabic', ['https://dlhd.pk/stream/stream-98.php', 'https://dlhd.pk/cast/stream-98.php', 'https://dlhd.pk/watch/stream-98.php', 'https://dlhd.pk/plus/stream-98.php', 'https://dlhd.pk/casting/stream-98.php', 'https://dlhd.pk/player/stream-98.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 8 Arabic
-            </button>
-            
-            <!-- Channel 10 -->
-            <button onclick="loadChannel('beIN Sports 9 Arabic', ['https://dlhd.pk/stream/stream-99.php', 'https://dlhd.pk/cast/stream-99.php', 'https://dlhd.pk/watch/stream-99.php', 'https://dlhd.pk/plus/stream-99.php', 'https://dlhd.pk/casting/stream-99.php', 'https://dlhd.pk/player/stream-99.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 9 Arabic
-            </button>
-
-            <!-- Channel 11 -->
-            <button onclick="loadChannel('beIN SPORTS XTRA 1', ['https://dlhd.pk/stream/stream-100.php', 'https://dlhd.pk/cast/stream-100.php', 'https://dlhd.pk/watch/stream-100.php', 'https://dlhd.pk/plus/stream-100.php', 'https://dlhd.pk/casting/stream-100.php', 'https://dlhd.pk/player/stream-100.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS XTRA 1
-            </button>
-
-            <!-- Channel 12 -->
-            <button onclick="loadChannel('beIN Sports MENA English 1', ['https://dlhd.pk/stream/stream-61.php', 'https://dlhd.pk/cast/stream-61.php', 'https://dlhd.pk/watch/stream-61.php', 'https://dlhd.pk/plus/stream-61.php', 'https://dlhd.pk/casting/stream-61.php', 'https://dlhd.pk/player/stream-61.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MENA English 1
-            </button>
-
-            <!-- Channel 13 -->
-            <button onclick="loadChannel('beIN Sports MENA English 2', ['https://dlhd.pk/stream/stream-90.php', 'https://dlhd.pk/cast/stream-90.php', 'https://dlhd.pk/watch/stream-90.php', 'https://dlhd.pk/plus/stream-90.php', 'https://dlhd.pk/casting/stream-90.php', 'https://dlhd.pk/player/stream-90.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MENA English 2
-            </button>
-
-            <!-- Channel 14 -->
-            <button onclick="loadChannel('beIN Sports MAX 4 France', ['https://dlhd.pk/stream/stream-494.php', 'https://dlhd.pk/cast/stream-494.php', 'https://dlhd.pk/watch/stream-494.php', 'https://dlhd.pk/plus/stream-494.php', 'https://dlhd.pk/casting/stream-494.php', 'https://dlhd.pk/player/stream-494.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 4 France
-            </button>
-            
-            <!-- Channel 15 -->
-            <button onclick="loadChannel('beIN Sports MAX 5 France', ['https://dlhd.pk/stream/stream-495.php', 'https://dlhd.pk/cast/stream-495.php', 'https://dlhd.pk/watch/stream-495.php', 'https://dlhd.pk/plus/stream-495.php', 'https://dlhd.pk/casting/stream-495.php', 'https://dlhd.pk/player/stream-495.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 5 France
-            </button>
-
-            <!-- Channel 16 -->
-            <button onclick="loadChannel('beIN Sports MAX 6 France', ['https://dlhd.pk/stream/stream-496.php', 'https://dlhd.pk/cast/stream-496.php', 'https://dlhd.pk/watch/stream-496.php', 'https://dlhd.pk/plus/stream-496.php', 'https://dlhd.pk/casting/stream-496.php', 'https://dlhd.pk/player/stream-496.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 6 France
-            </button>
-            
-            <!-- Channel 17 -->
-            <button onclick="loadChannel('beIN Sports MAX 7 France', ['https://dlhd.pk/stream/stream-497.php', 'https://dlhd.pk/cast/stream-497.php', 'https://dlhd.pk/watch/stream-497.php', 'https://dlhd.pk/plus/stream-497.php', 'https://dlhd.pk/casting/stream-497.php', 'https://dlhd.pk/player/stream-497.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 7 France
-            </button>
-
-            <!-- Channel 18 -->
-            <button onclick="loadChannel('beIN Sports MAX 8 France', ['https://dlhd.pk/stream/stream-498.php', 'https://dlhd.pk/cast/stream-498.php', 'https://dlhd.pk/watch/stream-498.php', 'https://dlhd.pk/plus/stream-498.php', 'https://dlhd.pk/casting/stream-498.php', 'https://dlhd.pk/player/stream-498.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 8 France
-            </button>
-            
-            <!-- Channel 19 -->
-            <button onclick="loadChannel('beIN Sports MAX 9 France', ['https://dlhd.pk/stream/stream-499.php', 'https://dlhd.pk/cast/stream-499.php', 'https://dlhd.pk/watch/stream-499.php', 'https://dlhd.pk/plus/stream-499.php', 'https://dlhd.pk/casting/stream-499.php', 'https://dlhd.pk/player/stream-499.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 9 France
-            </button>
-
-            <!-- Channel 20 -->
-            <button onclick="loadChannel('beIN Sports MAX 10 France', ['https://dlhd.pk/stream/stream-500.php', 'https://dlhd.pk/cast/stream-500.php', 'https://dlhd.pk/watch/stream-500.php', 'https://dlhd.pk/plus/stream-500.php', 'https://dlhd.pk/casting/stream-500.php', 'https://dlhd.pk/player/stream-500.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 10 France
-            </button>
-
-            <!-- Channel 21 -->
-            <button onclick="loadChannel('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 1 France
-            </button>
-
-            <!-- Channel 22 -->
-            <button onclick="loadChannel('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 2 France
-            </button>
-            
-            <!-- Channel 23 -->
-            <button onclick="loadChannel('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 3 France
-            </button>
-
-            <!-- Channel 24 -->
-            <button onclick="loadChannel('beIN SPORTS 1 Turkey', ['https://dlhd.pk/stream/stream-62.php', 'https://dlhd.pk/cast/stream-62.php', 'https://dlhd.pk/watch/stream-62.php', 'https://dlhd.pk/plus/stream-62.php', 'https://dlhd.pk/casting/stream-62.php', 'https://dlhd.pk/player/stream-62.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS 1 Turkey
-            </button>
-
-            <!-- Channel 25 -->
-            <button onclick="loadChannel('beIN SPORTS 2 Turkey', ['https://dlhd.pk/stream/stream-63.php', 'https://dlhd.pk/cast/stream-63.php', 'https://dlhd.pk/watch/stream-63.php', 'https://dlhd.pk/plus/stream-63.php', 'https://dlhd.pk/casting/stream-63.php', 'https://dlhd.pk/player/stream-63.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS 2 Turkey
-            </button>
-
-            <!-- Channel 26 -->
-            <button onclick="loadChannel('beIN SPORTS 3 Turkey', ['https://dlhd.pk/stream/stream-64.php', 'https://dlhd.pk/cast/stream-64.php', 'https://dlhd.pk/watch/stream-64.php', 'https://dlhd.pk/plus/stream-64.php', 'https://dlhd.pk/casting/stream-64.php', 'https://dlhd.pk/player/stream-64.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS 3 Turkey
-            </button>
-
-            <!-- Channel 27 -->
-            <button onclick="loadChannel('beIN SPORTS 4 Turkey', ['https://dlhd.pk/stream/stream-67.php', 'https://dlhd.pk/cast/stream-67.php', 'https://dlhd.pk/watch/stream-67.php', 'https://dlhd.pk/plus/stream-67.php', 'https://dlhd.pk/casting/stream-67.php', 'https://dlhd.pk/player/stream-67.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS 4 Turkey
-            </button>
-
-            <!-- Channel 28 -->
-            <button onclick="loadChannel('BeIN Sports HD Qatar', ['https://dlhd.pk/stream/stream-578.php', 'https://dlhd.pk/cast/stream-578.php', 'https://dlhd.pk/watch/stream-578.php', 'https://dlhd.pk/plus/stream-578.php', 'https://dlhd.pk/casting/stream-578.php', 'https://dlhd.pk/player/stream-578.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                BeIN Sports HD Qatar
-            </button>
-
-            <!-- Channel 29 -->
-            <button onclick="loadChannel('BeIN SPORTS USA', ['https://dlhd.pk/stream/stream-425.php', 'https://dlhd.pk/cast/stream-425.php', 'https://dlhd.pk/watch/stream-425.php', 'https://dlhd.pk/plus/stream-425.php', 'https://dlhd.pk/casting/stream-425.php', 'https://dlhd.pk/player/stream-425.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                BeIN SPORTS USA
-            </button>
-
-            <!-- Channel 30 -->
-            <button onclick="loadChannel('beIN SPORTS en Español', ['https://dlhd.pk/stream/stream-372.php', 'https://dlhd.pk/cast/stream-372.php', 'https://dlhd.pk/watch/stream-372.php', 'https://dlhd.pk/plus/stream-372.php', 'https://dlhd.pk/casting/stream-372.php', 'https://dlhd.pk/player/stream-372.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS en Español
-            </button>
-
-            <!-- Channel 31 -->
-            <button onclick="loadChannel('beIN SPORTS Australia 1', ['https://dlhd.pk/stream/stream-491.php', 'https://dlhd.pk/cast/stream-491.php', 'https://dlhd.pk/watch/stream-491.php', 'https://dlhd.pk/plus/stream-491.php', 'https://dlhd.pk/casting/stream-491.php', 'https://dlhd.pk/player/stream-491.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS Australia 1
-            </button>
-
-            <!-- Channel 32 -->
-            <button onclick="loadChannel('beIN SPORTS Australia 2', ['https://dlhd.pk/stream/stream-492.php', 'https://dlhd.pk/cast/stream-492.php', 'https://dlhd.pk/watch/stream-492.php', 'https://dlhd.pk/plus/stream-492.php', 'https://dlhd.pk/casting/stream-492.php', 'https://dlhd.pk/player/stream-492.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS Australia 2
-            </button>
-
-            <!-- Channel 33 -->
-            <button onclick="loadChannel('beIN SPORTS Australia 3', ['https://dlhd.pk/stream/stream-493.php', 'https://dlhd.pk/cast/stream-493.php', 'https://dlhd.pk/watch/stream-493.php', 'https://dlhd.pk/plus/stream-493.php', 'https://dlhd.pk/casting/stream-493.php', 'https://dlhd.pk/player/stream-493.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS Australia 3
-            </button>
-
-            <!-- Channel 34 -->
-            <button onclick="loadChannel('beIN Sports 1 Malaysia', ['https://dlhd.pk/stream/stream-712.php', 'https://dlhd.pk/cast/stream-712.php', 'https://dlhd.pk/watch/stream-712.php', 'https://dlhd.pk/plus/stream-712.php', 'https://dlhd.pk/casting/stream-712.php', 'https://dlhd.pk/player/stream-712.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 1 Malaysia
-            </button>
-
-            <!-- Channel 35 -->
-            <button onclick="loadChannel('beIN Sports 2 Malaysia', ['https://dlhd.pk/stream/stream-713.php', 'https://dlhd.pk/cast/stream-713.php', 'https://dlhd.pk/watch/stream-713.php', 'https://dlhd.pk/plus/stream-713.php', 'https://dlhd.pk/casting/stream-713.php', 'https://dlhd.pk/player/stream-713.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 2 Malaysia
-            </button>
-            
-            <!-- Channel 36 -->
-            <button onclick="loadChannel('beIN Sports 3 Malaysia', ['https://dlhd.pk/stream/stream-714.php', 'https://dlhd.pk/cast/stream-714.php', 'https://dlhd.pk/watch/stream-714.php', 'https://dlhd.pk/plus/stream-714.php', 'https://dlhd.pk/casting/stream-714.php', 'https://dlhd.pk/player/stream-714.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 3 Malaysia
-            </button>
-
-            <!-- Channel 37 -->
-            <button onclick="loadChannel('bein Sports 5 Turkey', ['https://dlhd.pk/stream/stream-1010.php', 'https://dlhd.pk/cast/stream-1010.php', 'https://dlhd.pk/watch/stream-1010.php', 'https://dlhd.pk/plus/stream-1010.php', 'https://dlhd.pk/casting/stream-1010.php', 'https://dlhd.pk/player/stream-1010.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                bein Sports 5 Turkey
-            </button>
-
-            <!-- Channel 38 -->
-            <button onclick="loadChannel('beIN SPORTS MAX AR', ['https://dlhd.pk/stream/stream-597.php', 'https://dlhd.pk/cast/stream-597.php', 'https://dlhd.pk/watch/stream-597.php', 'https://dlhd.pk/plus/stream-597.php', 'https://dlhd.pk/casting/stream-597.php', 'https://dlhd.pk/player/stream-597.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN SPORTS MAX AR
-            </button>
-            
-            <!-- Channel 39 -->
-            <button onclick="loadChannel('beIN Sports MAX 2 Arabia', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports MAX 2 Arabia
-            </button>
-
-            <!-- Channel 40 -->
-            <button onclick="loadChannel('beIN Sports 1 MAX Arabic', ['https://dlhd.pk/stream/stream-966.php', 'https://dlhd.pk/cast/stream-966.php', 'https://dlhd.pk/watch/stream-966.php', 'https://dlhd.pk/plus/stream-966.php', 'https://dlhd.pk/casting/stream-966.php', 'https://dlhd.pk/player/stream-966.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 1 MAX Arabic
-            </button>
-
-            <!-- Channel 41 -->
-            <button onclick="loadChannel('beIN Sports 3 MAX Arabic', ['https://dlhd.pk/stream/stream-968.php', 'https://dlhd.pk/cast/stream-968.php', 'https://dlhd.pk/watch/stream-968.php', 'https://dlhd.pk/plus/stream-968.php', 'https://dlhd.pk/casting/stream-968.php', 'https://dlhd.pk/player/stream-968.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 3 MAX Arabic
-            </button>
-
-            <!-- Channel 42 -->
-            <button onclick="loadChannel('beIN Sports 4 MAX Arabic', ['https://dlhd.pk/stream/stream-969.php', 'https://dlhd.pk/cast/stream-969.php', 'https://dlhd.pk/watch/stream-969.php', 'https://dlhd.pk/plus/stream-969.php', 'https://dlhd.pk/casting/stream-969.php', 'https://dlhd.pk/player/stream-969.php'])" class="channel-btn">
-                <img src="BeIN_Sports_logo.svg" class="channel-icon">
-                beIN Sports 4 MAX Arabic
-            </button>
+    <div class="main-layout">
+        <!-- Left Column -->
+        <div class="channel-column">
+            <!-- Channels 1-21 -->
+            <button class="pill-btn color-1" onclick="loadChannel('Bein Arabic 4K Quality', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])">Bein Arabic 4K Quality</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 1 Arabic', ['https://dlhd.pk/stream/stream-91.php', 'https://dlhd.pk/cast/stream-91.php', 'https://dlhd.pk/watch/stream-91.php', 'https://dlhd.pk/plus/stream-91.php', 'https://dlhd.pk/casting/stream-91.php', 'https://dlhd.pk/player/stream-91.php'])">beIN Sports 1 Arabic</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 2 Arabic', ['https://dlhd.pk/stream/stream-92.php', 'https://dlhd.pk/cast/stream-92.php', 'https://dlhd.pk/watch/stream-92.php', 'https://dlhd.pk/plus/stream-92.php', 'https://dlhd.pk/casting/stream-92.php', 'https://dlhd.pk/player/stream-92.php'])">beIN Sports 2 Arabic</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports 3 Arabic', ['https://dlhd.pk/stream/stream-93.php', 'https://dlhd.pk/cast/stream-93.php', 'https://dlhd.pk/watch/stream-93.php', 'https://dlhd.pk/plus/stream-93.php', 'https://dlhd.pk/casting/stream-93.php', 'https://dlhd.pk/player/stream-93.php'])">beIN Sports 3 Arabic</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports 4 Arabic', ['https://dlhd.pk/stream/stream-94.php', 'https://dlhd.pk/cast/stream-94.php', 'https://dlhd.pk/watch/stream-94.php', 'https://dlhd.pk/plus/stream-94.php', 'https://dlhd.pk/casting/stream-94.php', 'https://dlhd.pk/player/stream-94.php'])">beIN Sports 4 Arabic</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 5 Arabic', ['https://dlhd.pk/stream/stream-95.php', 'https://dlhd.pk/cast/stream-95.php', 'https://dlhd.pk/watch/stream-95.php', 'https://dlhd.pk/plus/stream-95.php', 'https://dlhd.pk/casting/stream-95.php', 'https://dlhd.pk/player/stream-95.php'])">beIN Sports 5 Arabic</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 6 Arabic', ['https://dlhd.pk/stream/stream-96.php', 'https://dlhd.pk/cast/stream-96.php', 'https://dlhd.pk/watch/stream-96.php', 'https://dlhd.pk/plus/stream-96.php', 'https://dlhd.pk/casting/stream-96.php', 'https://dlhd.pk/player/stream-96.php'])">beIN Sports 6 Arabic</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 7 Arabic', ['https://dlhd.pk/stream/stream-97.php', 'https://dlhd.pk/cast/stream-97.php', 'https://dlhd.pk/watch/stream-97.php', 'https://dlhd.pk/plus/stream-97.php', 'https://dlhd.pk/casting/stream-97.php', 'https://dlhd.pk/player/stream-97.php'])">beIN Sports 7 Arabic</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports 8 Arabic', ['https://dlhd.pk/stream/stream-98.php', 'https://dlhd.pk/cast/stream-98.php', 'https://dlhd.pk/watch/stream-98.php', 'https://dlhd.pk/plus/stream-98.php', 'https://dlhd.pk/casting/stream-98.php', 'https://dlhd.pk/player/stream-98.php'])">beIN Sports 8 Arabic</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports 9 Arabic', ['https://dlhd.pk/stream/stream-99.php', 'https://dlhd.pk/cast/stream-99.php', 'https://dlhd.pk/watch/stream-99.php', 'https://dlhd.pk/plus/stream-99.php', 'https://dlhd.pk/casting/stream-99.php', 'https://dlhd.pk/player/stream-99.php'])">beIN Sports 9 Arabic</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN SPORTS XTRA 1', ['https://dlhd.pk/stream/stream-100.php', 'https://dlhd.pk/cast/stream-100.php', 'https://dlhd.pk/watch/stream-100.php', 'https://dlhd.pk/plus/stream-100.php', 'https://dlhd.pk/casting/stream-100.php', 'https://dlhd.pk/player/stream-100.php'])">beIN SPORTS XTRA 1</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports MENA English 1', ['https://dlhd.pk/stream/stream-61.php', 'https://dlhd.pk/cast/stream-61.php', 'https://dlhd.pk/watch/stream-61.php', 'https://dlhd.pk/plus/stream-61.php', 'https://dlhd.pk/casting/stream-61.php', 'https://dlhd.pk/player/stream-61.php'])">beIN Sports MENA English 1</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN Sports MENA English 2', ['https://dlhd.pk/stream/stream-90.php', 'https://dlhd.pk/cast/stream-90.php', 'https://dlhd.pk/watch/stream-90.php', 'https://dlhd.pk/plus/stream-90.php', 'https://dlhd.pk/casting/stream-90.php', 'https://dlhd.pk/player/stream-90.php'])">beIN Sports MENA English 2</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports MAX 4 France', ['https://dlhd.pk/stream/stream-494.php', 'https://dlhd.pk/cast/stream-494.php', 'https://dlhd.pk/watch/stream-494.php', 'https://dlhd.pk/plus/stream-494.php', 'https://dlhd.pk/casting/stream-494.php', 'https://dlhd.pk/player/stream-494.php'])">beIN Sports MAX 4 France</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports MAX 5 France', ['https://dlhd.pk/stream/stream-495.php', 'https://dlhd.pk/cast/stream-495.php', 'https://dlhd.pk/watch/stream-495.php', 'https://dlhd.pk/plus/stream-495.php', 'https://dlhd.pk/casting/stream-495.php', 'https://dlhd.pk/player/stream-495.php'])">beIN Sports MAX 5 France</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN Sports MAX 6 France', ['https://dlhd.pk/stream/stream-496.php', 'https://dlhd.pk/cast/stream-496.php', 'https://dlhd.pk/watch/stream-496.php', 'https://dlhd.pk/plus/stream-496.php', 'https://dlhd.pk/casting/stream-496.php', 'https://dlhd.pk/player/stream-496.php'])">beIN Sports MAX 6 France</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports MAX 7 France', ['https://dlhd.pk/stream/stream-497.php', 'https://dlhd.pk/cast/stream-497.php', 'https://dlhd.pk/watch/stream-497.php', 'https://dlhd.pk/plus/stream-497.php', 'https://dlhd.pk/casting/stream-497.php', 'https://dlhd.pk/player/stream-497.php'])">beIN Sports MAX 7 France</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN Sports MAX 8 France', ['https://dlhd.pk/stream/stream-498.php', 'https://dlhd.pk/cast/stream-498.php', 'https://dlhd.pk/watch/stream-498.php', 'https://dlhd.pk/plus/stream-498.php', 'https://dlhd.pk/casting/stream-498.php', 'https://dlhd.pk/player/stream-498.php'])">beIN Sports MAX 8 France</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports MAX 9 France', ['https://dlhd.pk/stream/stream-499.php', 'https://dlhd.pk/cast/stream-499.php', 'https://dlhd.pk/watch/stream-499.php', 'https://dlhd.pk/plus/stream-499.php', 'https://dlhd.pk/casting/stream-499.php', 'https://dlhd.pk/player/stream-499.php'])">beIN Sports MAX 9 France</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports MAX 10 France', ['https://dlhd.pk/stream/stream-500.php', 'https://dlhd.pk/cast/stream-500.php', 'https://dlhd.pk/watch/stream-500.php', 'https://dlhd.pk/plus/stream-500.php', 'https://dlhd.pk/casting/stream-500.php', 'https://dlhd.pk/player/stream-500.php'])">beIN Sports MAX 10 France</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 1 France', ['https://dlhd.pk/stream/stream-116.php', 'https://dlhd.pk/cast/stream-116.php', 'https://dlhd.pk/watch/stream-116.php', 'https://dlhd.pk/plus/stream-116.php', 'https://dlhd.pk/casting/stream-116.php', 'https://dlhd.pk/player/stream-116.php'])">beIN Sports 1 France</button>
         </div>
 
-        <!-- Player and Servers -->
-        <div id="player-container" style="display: none;">
-            <h2 id="selected-channel-name"></h2>
-            <iframe id="video-frame" 
-                    src="" 
-                    allow="fullscreen; autoplay; encrypted-media" 
-                    allowfullscreen>
-            </iframe>
-            <div id="server-buttons">
-                <!-- Buttons will be updated by JS -->
+        <!-- Center Column -->
+        <div class="center-area">
+            <div id="player-container">
+                <iframe id="video-frame" src="" allow="fullscreen; autoplay; encrypted-media" allowfullscreen></iframe>
+                <div id="server-buttons">
+                    <!-- Servers populated here -->
+                </div>
             </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="channel-column">
+            <!-- Channels 22-42 -->
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 2 France', ['https://dlhd.pk/stream/stream-117.php', 'https://dlhd.pk/cast/stream-117.php', 'https://dlhd.pk/watch/stream-117.php', 'https://dlhd.pk/plus/stream-117.php', 'https://dlhd.pk/casting/stream-117.php', 'https://dlhd.pk/player/stream-117.php'])">beIN Sports 2 France</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN Sports 3 France', ['https://dlhd.pk/stream/stream-118.php', 'https://dlhd.pk/cast/stream-118.php', 'https://dlhd.pk/watch/stream-118.php', 'https://dlhd.pk/plus/stream-118.php', 'https://dlhd.pk/casting/stream-118.php', 'https://dlhd.pk/player/stream-118.php'])">beIN Sports 3 France</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN SPORTS 1 Turkey', ['https://dlhd.pk/stream/stream-62.php', 'https://dlhd.pk/cast/stream-62.php', 'https://dlhd.pk/watch/stream-62.php', 'https://dlhd.pk/plus/stream-62.php', 'https://dlhd.pk/casting/stream-62.php', 'https://dlhd.pk/player/stream-62.php'])">beIN SPORTS 1 Turkey</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN SPORTS 2 Turkey', ['https://dlhd.pk/stream/stream-63.php', 'https://dlhd.pk/cast/stream-63.php', 'https://dlhd.pk/watch/stream-63.php', 'https://dlhd.pk/plus/stream-63.php', 'https://dlhd.pk/casting/stream-63.php', 'https://dlhd.pk/player/stream-63.php'])">beIN SPORTS 2 Turkey</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN SPORTS 3 Turkey', ['https://dlhd.pk/stream/stream-64.php', 'https://dlhd.pk/cast/stream-64.php', 'https://dlhd.pk/watch/stream-64.php', 'https://dlhd.pk/plus/stream-64.php', 'https://dlhd.pk/casting/stream-64.php', 'https://dlhd.pk/player/stream-64.php'])">beIN SPORTS 3 Turkey</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN SPORTS 4 Turkey', ['https://dlhd.pk/stream/stream-67.php', 'https://dlhd.pk/cast/stream-67.php', 'https://dlhd.pk/watch/stream-67.php', 'https://dlhd.pk/plus/stream-67.php', 'https://dlhd.pk/casting/stream-67.php', 'https://dlhd.pk/player/stream-67.php'])">beIN SPORTS 4 Turkey</button>
+            <button class="pill-btn color-3" onclick="loadChannel('BeIN Sports HD Qatar', ['https://dlhd.pk/stream/stream-578.php', 'https://dlhd.pk/cast/stream-578.php', 'https://dlhd.pk/watch/stream-578.php', 'https://dlhd.pk/plus/stream-578.php', 'https://dlhd.pk/casting/stream-578.php', 'https://dlhd.pk/player/stream-578.php'])">BeIN Sports HD Qatar</button>
+            <button class="pill-btn color-4" onclick="loadChannel('BeIN SPORTS USA', ['https://dlhd.pk/stream/stream-425.php', 'https://dlhd.pk/cast/stream-425.php', 'https://dlhd.pk/watch/stream-425.php', 'https://dlhd.pk/plus/stream-425.php', 'https://dlhd.pk/casting/stream-425.php', 'https://dlhd.pk/player/stream-425.php'])">BeIN SPORTS USA</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN SPORTS en Español', ['https://dlhd.pk/stream/stream-372.php', 'https://dlhd.pk/cast/stream-372.php', 'https://dlhd.pk/watch/stream-372.php', 'https://dlhd.pk/plus/stream-372.php', 'https://dlhd.pk/casting/stream-372.php', 'https://dlhd.pk/player/stream-372.php'])">beIN SPORTS en Español</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN SPORTS Australia 1', ['https://dlhd.pk/stream/stream-491.php', 'https://dlhd.pk/cast/stream-491.php', 'https://dlhd.pk/watch/stream-491.php', 'https://dlhd.pk/plus/stream-491.php', 'https://dlhd.pk/casting/stream-491.php', 'https://dlhd.pk/player/stream-491.php'])">beIN SPORTS Australia 1</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN SPORTS Australia 2', ['https://dlhd.pk/stream/stream-492.php', 'https://dlhd.pk/cast/stream-492.php', 'https://dlhd.pk/watch/stream-492.php', 'https://dlhd.pk/plus/stream-492.php', 'https://dlhd.pk/casting/stream-492.php', 'https://dlhd.pk/player/stream-492.php'])">beIN SPORTS Australia 2</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN SPORTS Australia 3', ['https://dlhd.pk/stream/stream-493.php', 'https://dlhd.pk/cast/stream-493.php', 'https://dlhd.pk/watch/stream-493.php', 'https://dlhd.pk/plus/stream-493.php', 'https://dlhd.pk/casting/stream-493.php', 'https://dlhd.pk/player/stream-493.php'])">beIN SPORTS Australia 3</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports 1 Malaysia', ['https://dlhd.pk/stream/stream-712.php', 'https://dlhd.pk/cast/stream-712.php', 'https://dlhd.pk/watch/stream-712.php', 'https://dlhd.pk/plus/stream-712.php', 'https://dlhd.pk/casting/stream-712.php', 'https://dlhd.pk/player/stream-712.php'])">beIN Sports 1 Malaysia</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports 2 Malaysia', ['https://dlhd.pk/stream/stream-713.php', 'https://dlhd.pk/cast/stream-713.php', 'https://dlhd.pk/watch/stream-713.php', 'https://dlhd.pk/plus/stream-713.php', 'https://dlhd.pk/casting/stream-713.php', 'https://dlhd.pk/player/stream-713.php'])">beIN Sports 2 Malaysia</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 3 Malaysia', ['https://dlhd.pk/stream/stream-714.php', 'https://dlhd.pk/cast/stream-714.php', 'https://dlhd.pk/watch/stream-714.php', 'https://dlhd.pk/plus/stream-714.php', 'https://dlhd.pk/casting/stream-714.php', 'https://dlhd.pk/player/stream-714.php'])">beIN Sports 3 Malaysia</button>
+            <button class="pill-btn color-2" onclick="loadChannel('bein Sports 5 Turkey', ['https://dlhd.pk/stream/stream-1010.php', 'https://dlhd.pk/cast/stream-1010.php', 'https://dlhd.pk/watch/stream-1010.php', 'https://dlhd.pk/plus/stream-1010.php', 'https://dlhd.pk/casting/stream-1010.php', 'https://dlhd.pk/player/stream-1010.php'])">bein Sports 5 Turkey</button>
+            <button class="pill-btn color-3" onclick="loadChannel('beIN SPORTS MAX AR', ['https://dlhd.pk/stream/stream-597.php', 'https://dlhd.pk/cast/stream-597.php', 'https://dlhd.pk/watch/stream-597.php', 'https://dlhd.pk/plus/stream-597.php', 'https://dlhd.pk/casting/stream-597.php', 'https://dlhd.pk/player/stream-597.php'])">beIN SPORTS MAX AR</button>
+            <button class="pill-btn color-4" onclick="loadChannel('beIN Sports MAX 2 Arabia', ['https://dlhd.pk/stream/stream-967.php', 'https://dlhd.pk/cast/stream-967.php', 'https://dlhd.pk/watch/stream-967.php', 'https://dlhd.pk/plus/stream-967.php', 'https://dlhd.pk/casting/stream-967.php', 'https://dlhd.pk/player/stream-967.php'])">beIN Sports MAX 2 Arabia</button>
+            <button class="pill-btn color-5" onclick="loadChannel('beIN Sports 1 MAX Arabic', ['https://dlhd.pk/stream/stream-966.php', 'https://dlhd.pk/cast/stream-966.php', 'https://dlhd.pk/watch/stream-966.php', 'https://dlhd.pk/plus/stream-966.php', 'https://dlhd.pk/casting/stream-966.php', 'https://dlhd.pk/player/stream-966.php'])">beIN Sports 1 MAX Arabic</button>
+            <button class="pill-btn color-1" onclick="loadChannel('beIN Sports 3 MAX Arabic', ['https://dlhd.pk/stream/stream-968.php', 'https://dlhd.pk/cast/stream-968.php', 'https://dlhd.pk/watch/stream-968.php', 'https://dlhd.pk/plus/stream-968.php', 'https://dlhd.pk/casting/stream-968.php', 'https://dlhd.pk/player/stream-968.php'])">beIN Sports 3 MAX Arabic</button>
+            <button class="pill-btn color-2" onclick="loadChannel('beIN Sports 4 MAX Arabic', ['https://dlhd.pk/stream/stream-969.php', 'https://dlhd.pk/cast/stream-969.php', 'https://dlhd.pk/watch/stream-969.php', 'https://dlhd.pk/plus/stream-969.php', 'https://dlhd.pk/casting/stream-969.php', 'https://dlhd.pk/player/stream-969.php'])">beIN Sports 4 MAX Arabic</button>
         </div>
     </div>
 
     <script>
-        function showBeinPage() {
-            document.getElementById('main-menu').style.display = 'none';
-            document.getElementById('bein-section').style.display = 'block';
-        }
-
         function loadChannel(name, links) {
-            document.getElementById('selected-channel-name').innerText = name;
-            document.getElementById('player-container').style.display = 'block';
-            
-            // Auto play Server 1
+            // Set the video player src
             document.getElementById('video-frame').src = links[0];
             
-            // Update server buttons
+            // Generate server buttons
             const serverContainer = document.getElementById('server-buttons');
-            serverContainer.innerHTML = ''; // Clear old buttons
+            serverContainer.innerHTML = '';
             
             links.forEach((link, index) => {
                 const btn = document.createElement('button');
