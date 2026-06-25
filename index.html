@@ -15,7 +15,19 @@
         }
         #main-menu { display: block; }
         #bein-section { display: none; color: white; text-align: center; }
-        .nav-btn { background: none; border: none; cursor: pointer; }
+        
+        /* Updated button styles to ensure visibility */
+        .nav-btn { 
+            background: rgba(255, 255, 255, 0.2); 
+            border: 2px solid white; 
+            padding: 20px; 
+            cursor: pointer; 
+            border-radius: 10px;
+        }
+        .nav-btn img {
+            width: 200px; /* Forces the image to be visible */
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -23,7 +35,7 @@
     <!-- Main View -->
     <div id="main-menu">
         <button class="nav-btn" onclick="showBeinPage()">
-            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports Button">
+            <img src="BeIN_Sports_logo.svg" alt="BeIN Sports">
         </button>
     </div>
 
