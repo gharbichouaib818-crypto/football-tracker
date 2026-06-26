@@ -228,11 +228,6 @@
         adIndex = (adIndex + 1) % adLinks.length;
         if (isDazn) { loadChannelDazn(name, links); } else { loadChannel(name, links); }
     }
-    function handleAdClick(name, links, isfox) {
-        window.open(adLinks[adIndex], '_blank');
-        adIndex = (adIndex + 1) % adLinks.length;
-        if (isfox) { loadChannelfox(name, links); } else { loadChannel(name, links); }
-    }
 
     function showSection(sectionId) { document.getElementById('main-menu').style.display = 'none'; document.getElementById(sectionId).style.display = 'block'; }
     
