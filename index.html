@@ -152,6 +152,34 @@
             document.getElementById('video-frame-fox').src = '';
         }
 
+        function loadChannel(name, links) {
+            document.getElementById('selected-channel-name').innerText = name;
+            document.getElementById('video-frame').src = links[0];
+            const serverContainer = document.getElementById('server-buttons');
+            serverContainer.innerHTML = ''; 
+            links.forEach((link, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'server-btn';
+                btn.innerText = 'Server ' + (index + 1);
+                btn.onclick = () => { document.getElementById('video-frame').src = link; };
+                serverContainer.appendChild(btn);
+            });
+        }
+
+        function loadChannelDazn(name, links) {
+            document.getElementById('selected-channel-name-dazn').innerText = name;
+            document.getElementById('video-frame-dazn').src = links[0];
+            const serverContainer = document.getElementById('server-buttons-dazn');
+            serverContainer.innerHTML = ''; 
+            links.forEach((link, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'server-btn';
+                btn.innerText = 'Server ' + (index + 1);
+                btn.onclick = () => { document.getElementById('video-frame-dazn').src = link; };
+                serverContainer.appendChild(btn);
+            });
+        }
+
         function loadChannelFox(name, links) {
             document.getElementById('selected-channel-name-fox').innerText = name;
             document.getElementById('video-frame-fox').src = links[0];
