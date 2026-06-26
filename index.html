@@ -219,7 +219,6 @@
             </div>
         </div>
     </div>
-    
     <script>
         let adIndex = 0;
         const adLinks = ["https://omg10.com/4/11175198", "https://omg10.com/4/11175191"];
@@ -270,6 +269,22 @@
                 serverContainer.appendChild(btn);
             });
         }
+        function loadChannelFox(name, links) {
+    // Make sure you have an element with the ID 'selected-channel-name-fox'
+    document.getElementById('selected-channel-name-fox').innerText = name;
+    // Make sure you have an iframe with the ID 'video-frame-fox'
+    document.getElementById('video-frame-fox').src = links[0];
+    
+    const serverContainer = document.getElementById('server-buttons-fox');
+    serverContainer.innerHTML = ''; 
+    links.forEach((link, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'server-btn';
+        btn.innerText = 'Server ' + (index + 1);
+        btn.onclick = () => { document.getElementById('video-frame-fox').src = link; };
+        serverContainer.appendChild(btn);
+    });
+}
     </script>
 </body>
 </html>
