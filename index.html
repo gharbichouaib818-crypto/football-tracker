@@ -9,7 +9,6 @@
         .nav-btn img { width: 200px; height: auto; }
         .page-section { display: none; padding: 20px; }
         
-        /* Fixed: High z-index to stay above ads */
         .back-btn { background: rgba(255, 255, 255, 0.2); border: 2px solid white; color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; margin-bottom: 20px; font-weight: bold; transition: background 0.3s; position: relative; z-index: 100000; }
         .back-btn:hover { background: rgba(255, 255, 255, 0.4); }
         
@@ -191,25 +190,14 @@
             </div>
         </div>
     </div>
-    <!-- FOX Section -->
+
+    <!-- Fox Section -->
     <div id="fox-section" class="page-section">
         <button class="back-btn" onclick="goHome()">← Back to Home</button>
         <div class="main-layout">
             <div class="channel-column">
-                <button class="pill-btn color-1" onclick="handleAdClick('Fox Sports boston', ['https://dlhd.pk/stream/stream-5064.php', 'https://dlhd.pk/cast/stream-5064.php', 'https://dlhd.pk/watch/stream-5064.php', 'https://dlhd.pk/plus/stream-5064.php', 'https://dlhd.pk/casting/stream-5064.php', 'https://dlhd.pk/player/stream-5064.php'], true)">Fox Sports boston</button>
-                <button class="pill-btn color-2" onclick="handleAdClick('Fox Sports 1 USA', ['https://dlhd.pk/stream/stream-39.php', 'https://dlhd.pk/cast/stream-39.php', 'https://dlhd.pk/watch/stream-39.php', 'https://dlhd.pk/plus/stream-39.php', 'https://dlhd.pk/casting/stream-39.php', 'https://dlhd.pk/player/stream-39.php'], true)">Fox Sports 1 USA</button>
-                <button class="pill-btn color-3" onclick="handleAdClick('Fox Sports 2 USA', ['https://dlhd.pk/stream/stream-758.php', 'https://dlhd.pk/cast/stream-758.php', 'https://dlhd.pk/watch/stream-758.php', 'https://dlhd.pk/plus/stream-758.php', 'https://dlhd.pk/casting/stream-758.php', 'https://dlhd.pk/player/stream-758.php'], true)">Fox Sports 2 USA</button>
-                <button class="pill-btn color-4" onclick="handleAdClick('FOX Soccer Plus 6', ['https://dlhd.pk/stream/stream-756.php', 'https://dlhd.pk/cast/stream-756.php', 'https://dlhd.pk/watch/stream-756.php', 'https://dlhd.pk/plus/stream-756.php', 'https://dlhd.pk/casting/stream-756.php', 'https://dlhd.pk/player/stream-756.php'], true)">FOX Soccer Plus 6</button>
-                <button class="pill-btn color-5" onclick="handleAdClick('Fox Cricket', ['https://dlhd.pk/stream/stream-369.php', 'https://dlhd.pk/cast/stream-369.php', 'https://dlhd.pk/watch/stream-369.php', 'https://dlhd.pk/plus/stream-369.php', 'https://dlhd.pk/casting/stream-369.php', 'https://dlhd.pk/player/stream-369.php'], true)">Fox Cricket</button>
-                <button class="pill-btn color-1" onclick="handleAdClick('FOX Deportes USA', ['https://dlhd.pk/stream/stream-643.php', 'https://dlhd.pk/cast/stream-643.php', 'https://dlhd.pk/watch/stream-643.php', 'https://dlhd.pk/plus/stream-643.php', 'https://dlhd.pk/casting/stream-643.php', 'https://dlhd.pk/player/stream-643.php'], true)">FOX Deportes USA</button>
-                <button class="pill-btn color-2" onclick="handleAdClick('FOX Sports 502 AU', ['https://dlhd.pk/stream/stream-820.php', 'https://dlhd.pk/cast/stream-820.php', 'https://dlhd.pk/watch/stream-820.php', 'https://dlhd.pk/plus/stream-820.php', 'https://dlhd.pk/casting/stream-820.php', 'https://dlhd.pk/player/stream-820.php'], true)">FOX Sports 502 AU</button>
-                <button class="pill-btn color-3" onclick="handleAdClick('FOX Sports 503 AU', ['https://dlhd.pk/stream/stream-821.php', 'https://dlhd.pk/cast/stream-821.php', 'https://dlhd.pk/watch/stream-821.php', 'https://dlhd.pk/plus/stream-821.php', 'https://dlhd.pk/casting/stream-821.php', 'https://dlhd.pk/player/stream-821.php'], true)">FOX Sports 503 AU</button>
-                <button class="pill-btn color-4" onclick="handleAdClick('FOX Sports 504', ['https://dlhd.pk/stream/stream-822.php', 'https://dlhd.pk/cast/stream-822.php', 'https://dlhd.pk/watch/stream-822.php', 'https://dlhd.pk/plus/stream-822.php', 'https://dlhd.pk/casting/stream-822.php', 'https://dlhd.pk/player/stream-822.php'], true)">FOX Sports 504</button>
-                <button class="pill-btn color-5" onclick="handleAdClick('FOX Sports 505 AU', ['https://dlhd.pk/stream/stream-823.php', 'https://dlhd.pk/cast/stream-823.php', 'https://dlhd.pk/watch/stream-823.php', 'https://dlhd.pk/plus/stream-823.php', 'https://dlhd.pk/casting/stream-823.php', 'https://dlhd.pk/player/stream-823.php'], true)">FOX Sports 505 AU</button>
-                <button class="pill-btn color-2" onclick="handleAdClick('FOX Sports 506 AU', ['https://dlhd.pk/stream/stream-824.php', 'https://dlhd.pk/cast/stream-824.php', 'https://dlhd.pk/watch/stream-824.php', 'https://dlhd.pk/plus/stream-824.php', 'https://dlhd.pk/casting/stream-824.php', 'https://dlhd.pk/player/stream-824.php'], true)">FOX Sports 506 AU</button>
-                <button class="pill-btn color-1" onclick="handleAdClick('FOX Sports 507 AU', ['https://dlhd.pk/stream/stream-825.php', 'https://dlhd.pk/cast/stream-825.php', 'https://dlhd.pk/watch/stream-825.php', 'https://dlhd.pk/plus/stream-825.php', 'https://dlhd.pk/casting/stream-825.php', 'https://dlhd.pk/player/stream-825.php'], true)">FOX Sports 507 AU</button>
+                <button class="pill-btn color-1" onclick="handleAdClickFox('Fox Sports Boston', ['https://dlhd.pk/stream/stream-5064.php', 'https://dlhd.pk/cast/stream-5064.php', 'https://dlhd.pk/watch/stream-5064.php', 'https://dlhd.pk/plus/stream-5064.php', 'https://dlhd.pk/casting/stream-5064.php', 'https://dlhd.pk/player/stream-5064.php'])">Fox Sports Boston</button>
             </div>
-
             <div class="center-area">
                 <div id="player-container-fox" class="player-container">
                     <h2 id="selected-channel-name-fox" class="channel-name">Select a Channel</h2>
@@ -219,33 +207,33 @@
             </div>
         </div>
     </div>
+
     <script>
         let adIndex = 0;
         const adLinks = ["https://omg10.com/4/11175198", "https://omg10.com/4/11175191"];
 
-        function handleAdClick(name, links, isSpecial) {
+        function handleAdClick(name, links, isDazn) {
             window.open(adLinks[adIndex], '_blank');
             adIndex = (adIndex + 1) % adLinks.length;
-            if (isSpecial) {
-                if (document.getElementById('fox-section').style.display === 'block') {
-                    loadChannelFox(name, links);
-                } else {
-                    loadChannelDazn(name, links);
-                }
-            } else {
-                loadChannel(name, links);
-            }
+            if (isDazn) { loadChannelDazn(name, links); } else { loadChannel(name, links); }
         }
 
-        function showSection(sectionId) {
-            document.getElementById('main-menu').style.display = 'none';
-            document.getElementById(sectionId).style.display = 'block';
+        // Special handler for Fox to use its own player container
+        function handleAdClickFox(name, links) {
+            window.open(adLinks[adIndex], '_blank');
+            adIndex = (adIndex + 1) % adLinks.length;
+            loadChannelFox(name, links);
         }
+
+        function showSection(sectionId) { document.getElementById('main-menu').style.display = 'none'; document.getElementById(sectionId).style.display = 'block'; }
         
         function goHome() { 
             document.getElementById('main-menu').style.display = 'flex'; 
+            // Hide all pages
             const sections = document.querySelectorAll('.page-section');
             sections.forEach(section => section.style.display = 'none');
+            
+            // Stop the players
             document.getElementById('video-frame').src = '';
             document.getElementById('video-frame-dazn').src = '';
             document.getElementById('video-frame-fox').src = '';
