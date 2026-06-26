@@ -223,23 +223,33 @@
     let adIndex = 0;
     const adLinks = ["https://omg10.com/4/11175198", "https://omg10.com/4/11175191"];
 
-    function handleAdClick(name, links, isDazn) {
+    function handleAdClick(name, links, channelType) {
         window.open(adLinks[adIndex], '_blank');
         adIndex = (adIndex + 1) % adLinks.length;
-        if (isDazn) { loadChannelDazn(name, links); } else { loadChannel(name, links); }
+        
+        if (channelType === 'dazn') {
+            loadChannelDazn(name, links);
+        } else if (channelType === 'fox') {
+            loadChannelFox(name, links);
+        } else {
+            loadChannel(name, links);
+        }
     }
 
-    function showSection(sectionId) { document.getElementById('main-menu').style.display = 'none'; document.getElementById(sectionId).style.display = 'block'; }
+    function showSection(sectionId) { 
+        document.getElementById('main-menu').style.display = 'none'; 
+        document.getElementById(sectionId).style.display = 'block'; 
+    }
     
     function goHome() { 
         document.getElementById('main-menu').style.display = 'flex'; 
-        // Hide all pages
         const sections = document.querySelectorAll('.page-section');
         sections.forEach(section => section.style.display = 'none');
         
-        // Stop the players
+        // Reset all video frames
         document.getElementById('video-frame').src = '';
         document.getElementById('video-frame-dazn').src = '';
+        document.getElementById('video-frame-fox').src = '';
     }
 
     function loadChannel(name, links) {
@@ -266,6 +276,20 @@
             btn.className = 'server-btn';
             btn.innerText = 'Server ' + (index + 1);
             btn.onclick = () => { document.getElementById('video-frame-dazn').src = link; };
+            serverContainer.appendChild(btn);
+        });
+    }
+
+    function loadChannelFox(name, links) {
+        document.getElementById('selected-channel-name-fox').innerText = name;
+        document.getElementById('video-frame-fox').src = links[0];
+        const serverContainer = document.getElementById('server-buttons-fox');
+        serverContainer.innerHTML = ''; 
+        links.forEach((link, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'server-btn';
+            btn.innerText = 'Server ' + (index + 1);
+            btn.onclick = () => { document.getElementById('video-frame-fox').src = link; };
             serverContainer.appendChild(btn);
         });
     }
